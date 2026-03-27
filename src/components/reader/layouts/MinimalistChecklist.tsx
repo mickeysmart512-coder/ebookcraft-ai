@@ -17,7 +17,7 @@ interface LayoutProps {
 export function MinimalistChecklist({ content, title, template, fontSize, isDarkMode, currentPage, totalPages }: LayoutProps) {
     // Detect special page types
     const isCover = content === "COVER_PAGE_MARKER";
-    const isTOC = content.toLowerCase().includes("table of contents");
+    const isTOC = content.toLowerCase().includes("archive index");
     const isPartDivider = content.includes("[PART]");
 
     // A4 Optimization Wrapper
@@ -92,9 +92,9 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                                     animate={{ y: 0, opacity: 1 }}
                                     className="text-left"
                                 >
-                                    <span className="text-[11px] font-black uppercase tracking-[1em] text-[#cec2b5] mb-2 block font-serif italic">Archive Index</span>
+                                    <span className="text-[11px] font-black uppercase tracking-[1em] text-[#cec2b5] mb-2 block font-serif italic">Digital Publication</span>
                                     <h1 className="text-6xl font-light tracking-tighter mb-6 text-slate-900 leading-none" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                        Contents
+                                        Archive Index
                                     </h1>
                                     <div className="w-full h-[2px] bg-slate-900/10 mb-2" />
                                     <div className="w-1/3 h-[1px] bg-[#cec2b5] mb-6" />
@@ -106,7 +106,7 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                                         <span className="opacity-30">/</span>
                                         <span className="text-slate-500">{title}</span>
                                     </div>
-                                    <div className="text-[10px] font-black uppercase tracking-widest text-[#cec2b5] opacity-50">Edition 1.2</div>
+                                    <div className="text-[10px] font-black uppercase tracking-widest text-[#cec2b5] opacity-50">Edition 1.3</div>
                                 </div>
                             )}
                         </header>
@@ -119,18 +119,8 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
 
                                     // Complex Grid Parsing
                                     if (trimmed.startsWith('[GRID]')) {
-                                        return null; // Handle in special block below if needed, but here we'll just skip and handle whole chunk later or line by line
-                                    }
-
-                                    // Special TOC & Structure Markers
-                                    const isPartHeader = trimmed.startsWith('PART');
-                                    const isChapterNum = trimmed.startsWith('Chapter');
-                                    const isTildeHeader = trimmed.startsWith('~') && trimmed.endsWith('~');
-
-                                    // [GRID] Parsing Logic
-                                    if (content.includes('[GRID]') && isTOC === false) {
                                         const gridMatch = content.match(/\[GRID\]([\s\S]*?)\[\/GRID\]/);
-                                        if (gridMatch && trimmed === '[GRID]') {
+                                        if (gridMatch) {
                                             const gridContent = gridMatch[1].trim();
                                             const rows = gridContent.split('\n').map(r => r.split('|').map(c => c.trim()));
                                             return (
@@ -160,7 +150,41 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                                                 </div>
                                             );
                                         }
-                                        if (trimmed.includes('|') || trimmed === '[/GRID]') return null;
+                                        return null;
+                                    }
+                                    if (trimmed.includes('|') || trimmed === '[/GRID]') return null;
+
+                                    // Special TOC Headers
+                                    const isPartHeader = trimmed.startsWith('PART');
+                                    const isChapterNum = trimmed.startsWith('Chapter');
+                                    const isTildeHeader = trimmed.startsWith('~') && trimmed.endsWith('~');
+
+                                    // Hierarchical TOC Logic (Checkbox-free)
+                                    if (isTOC) {
+                                        if (isPartHeader) {
+                                            return (
+                                                <div key={i} className="mb-6 mt-4 break-inside-avoid">
+                                                    <div className="text-[12px] font-black text-slate-900 border-b-4 border-[#cec2b5] pb-2 mb-4 uppercase tracking-[0.2em]">
+                                                        {trimmed}
+                                                    </div>
+                                                </div>
+                                            );
+                                        }
+                                        if (isChapterNum) {
+                                            return (
+                                                <div key={i} className="mb-2 break-inside-avoid text-[10px] font-bold text-slate-700 uppercase tracking-widest pl-3 border-l-2 border-slate-200">
+                                                    {trimmed}
+                                                </div>
+                                            );
+                                        }
+                                        if (!isTildeHeader) {
+                                            return (
+                                                <div key={i} className="mb-1 break-inside-avoid text-[9px] text-slate-500 font-medium pl-6 opacity-80 italic">
+                                                    {trimmed}
+                                                </div>
+                                            );
+                                        }
+                                        return null;
                                     }
 
                                     // [SAFETY] Block
@@ -197,27 +221,9 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                                         );
                                     }
 
-                                    if (isPartHeader && isTOC) {
-                                        return (
-                                            <div key={i} className="mb-6 mt-4 break-inside-avoid">
-                                                <div className="text-[12px] font-black text-slate-900 border-b-4 border-[#cec2b5] pb-2 mb-4 uppercase tracking-[0.2em]">
-                                                    {trimmed}
-                                                </div>
-                                            </div>
-                                        );
-                                    }
-
-                                    if (isChapterNum && isTOC) {
-                                        return (
-                                            <div key={i} className="mb-3 break-inside-avoid text-[10px] font-bold text-slate-600 uppercase tracking-widest border-l-2 border-[#f5ede6] pl-3">
-                                                {trimmed}
-                                            </div>
-                                        );
-                                    }
-
                                     if (isTildeHeader) {
                                         const headerText = trimmed.replace(/~/g, '').trim();
-                                        if (isTOC && headerText.toLowerCase().includes("contents")) return null;
+                                        if (headerText.toLowerCase().includes("archive index")) return null;
 
                                         return (
                                             <div key={i} className="pt-6 first:pt-0 break-inside-avoid shrink-0">
@@ -230,25 +236,24 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                                         );
                                     }
 
-                                    // Lists
+                                    // Lists (Elite Numbers & Bullets)
                                     if (trimmed.startsWith('●') || trimmed.startsWith('•') || trimmed.startsWith('○') || /^\d+\./.test(trimmed)) {
                                         return (
-                                            <div key={i} className={`flex items-start gap-4 ${trimmed.startsWith('○') ? 'pl-8' : 'pl-2'} group break-inside-avoid`}>
-                                                <div className={`mt-1.5 ${trimmed.startsWith('○') ? 'w-2.5 h-2.5 rounded-full border-[1.5px]' : 'w-3 h-3 rounded-sm border-[2px] shadow-sm'} border-slate-300 shrink-0 bg-white group-hover:border-[#cec2b5] transition-colors`} />
-                                                <p className={`${isTOC ? 'text-[9.5px]' : 'text-[14px]'} text-slate-800 font-medium leading-tight`}>
+                                            <div key={i} className="flex items-start gap-4 pl-2 break-inside-avoid">
+                                                <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#cec2b5] shrink-0" />
+                                                <p className="text-[14px] text-slate-800 font-medium leading-relaxed">
                                                     {trimmed.replace(/^[●•○]\s*|\d+\.\s*/, '')}
                                                 </p>
                                             </div>
                                         );
                                     }
 
-                                    // Paragraphs
+                                    // Elite Paragraph Flow
                                     if (trimmed.length > 0) {
-                                        if (isTOC && trimmed.toLowerCase().includes("contents")) return null;
-                                        if (trimmed.startsWith('[') && trimmed.endsWith(']')) return null; // Catch any stray markers
+                                        if (trimmed.startsWith('[') && trimmed.endsWith(']')) return null;
 
                                         return (
-                                            <p key={i} className="text-[14px] leading-[1.8] text-slate-700 text-justify font-serif opacity-95">
+                                            <p key={i} className="text-[15px] leading-[1.8] text-slate-800 text-justify font-serif opacity-95">
                                                 {trimmed}
                                             </p>
                                         );
@@ -257,21 +262,21 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                                 })}
                             </div>
 
-                            {/* Sidebar */}
+                            {/* Sidebar - Strictly for Quotes/Insights */}
                             {!isTOC && (
-                                <aside className="col-span-4 space-y-10 border-l border-[#f5ede6] pl-8">
+                                <aside className="col-span-4 space-y-10 border-l border-[#f5ede6] pl-8 flex flex-col h-full">
                                     <div className="bg-white/40 p-6 border border-slate-100 rounded-[20px] backdrop-blur-sm shadow-sm relative overflow-hidden group">
                                         <div className="absolute top-0 right-0 w-12 h-12 bg-[#f5ede6] rounded-bl-full flex items-center justify-center">
                                             <Plus className="w-4 h-4 text-[#cec2b5]" />
                                         </div>
-                                        <span className="text-[9px] font-black uppercase tracking-[0.5em] text-[#cec2b5] mb-4 block">Archive Method</span>
+                                        <span className="text-[9px] font-black uppercase tracking-[0.5em] text-[#cec2b5] mb-4 block">Archive Insight</span>
                                         <p className="text-[12px] italic font-serif leading-relaxed text-slate-600">
                                             "Experience the pour. Every candle is a moment of craft."
                                         </p>
                                     </div>
 
-                                    <div className="flex-1 flex items-end justify-center pb-12 opacity-15 select-none h-full">
-                                        <div className="text-center mt-auto">
+                                    <div className="flex-1 flex items-end justify-center pb-12 opacity-15 select-none mt-auto">
+                                        <div className="text-center">
                                             <div className="text-[70px] font-serif italic text-[#cec2b5] leading-none mb-3">
                                                 {String(currentPage).padStart(2, '0')}
                                             </div>
@@ -288,7 +293,7 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                 <footer className="h-14 px-20 flex justify-between items-center bg-white/20 border-t border-[#f5ede6] text-[9px] font-medium tracking-[0.6em] text-slate-400 shrink-0">
                     <div className="flex items-center gap-5">
                         <span className="w-12 h-[1px] bg-[#cec2b5]/30" />
-                        <span className="uppercase text-[8px] font-black text-slate-300">Edition 1.2</span>
+                        <span className="uppercase text-[8px] font-black text-slate-300">Edition 1.3</span>
                     </div>
                     <div>
                         <span className="text-slate-900 font-black px-6 py-2">P. {currentPage}</span>
