@@ -46,6 +46,40 @@ Chapter 6: Candle Dyes and Coloring
 ● How to Mix Custom Shades
 ● Avoiding Common Coloring Mistakes
 
+PART TWO: MAKING YOUR FIRST CANDLE
+Chapter 7: Candle Making Safety
+● Why Safety is the Top Priority
+● Workspace Safety Checklist
+● The Double Boiler Method
+● Handling Hot Wax and Fragrance Oils
+● Fire Safety and Emergency Preparedness
+● Safe Storage of Finished Candles
+
+Chapter 8: The Step-by-Step Process
+● Summary of the 8-Step Core Method
+● Step 1: Workspace Preparation
+● Step 2: Accurate Wax Measurement
+● Step 3: Controlled Melting Techniques
+● Step 4: Scent and Color Integration
+● Step 5: Professional Wick Securing
+● Step 6: Controlled Pouring
+● Step 7: Natural Cooling Process
+● Step 8: Final Trimming and Curing
+
+Chapter 9: Full Beginner Tutorial
+● Material Checklist for a Medium Jar
+● Detailed Walkthrough (Step 1 to 10)
+● Pro Tips for Each Stage
+● Proper Curing for Maximum Scent
+● Testing Your First Finished Product
+
+Chapter 10: Advanced Decorative Techniques
+● Creating Elegant Layered Candles
+● Mastering the Marbled Swirl Effect
+● Decorative Embedding and Texturing
+● Professional Finishing Touches
+● Maximizing Visual Market Appeal
+
 Introduction
 Welcome to Candle Making with Preshy! From First Pour to First Sale: A Beginner to Boss Candle Making Guide.
 
@@ -239,21 +273,18 @@ Cotton wicks are the most widely used candle wicks. They are made from braided c
 ● Widely available
 ● Reliable performance
 ● Work well with most wax types
-Cotton wicks are especially popular for container candles, making them a great choice for beginners.
 
 Wooden Wicks
 Wooden wicks are flat pieces of wood used instead of traditional string wicks. They have become very popular in modern candles because they produce a soft crackling sound when burning. This creates a cozy atmosphere similar to a fireplace.
 ● Unique aesthetic appearance
 ● Gentle crackling sound
 ● Modern and premium feel
-Challenges: Wooden wicks are usually recommended after gaining some candle making experience as they can be more difficult to wick correctly and harder to keep lit.
 
 Zinc Core Wicks
 Zinc core wicks contain a thin metal core that helps the wick remain straight while burning. They are often used in container candles where a rigid wick helps maintain stability.
 ● Stays upright in melted wax
 ● Consistent flame
 ● Good for deeper containers
-However, many modern candle makers prefer cotton wicks because they are simpler and more natural.
 
 Choosing the Right Wick Size
 Selecting the correct wick size is extremely important. The size of the wick determines how large the flame will be and how the candle burns. The correct wick size depends on several factors:
@@ -261,7 +292,6 @@ Selecting the correct wick size is extremely important. The size of the wick det
 ● The type of wax used
 ● The amount of fragrance oil
 ● The type of wick material
-For example, a large container candle will require a larger wick than a small candle. If the wick is too small, the candle may tunnel. If the wick is too large, the candle may burn too hot.
 
 What Is Candle Tunneling?
 Tunneling happens when the candle burns straight down the center instead of melting the entire surface, leaving wax stuck around the edges. This usually happens when the wick is too small or the candle is not burned long enough during its first use.
@@ -402,4 +432,119 @@ Consistent colors help customers recognize your brand. For example, a "Calm Coll
 
 Beautiful Candles Combine Color and Fragrance
 A truly beautiful candle appeals to both the eyes and the senses. Matching a soft purple color with a lavender scent makes the product feel more thoughtful and professional.
+
+[PART]PART TWO: Making Your First Candle[/PART]
+
+Chapter 7: Candle Making Safety
+Candle making is a fun and creative craft, but it also involves heat, hot wax, and flammable materials. For this reason, safety should always be the first priority. By understanding a few simple safety rules, you can enjoy candle making confidently while protecting yourself and your home.
+
+Why Safety Matters in Candle Making
+Hot wax can reach high temperatures and is flammable. Professional candle makers take safety seriously because it ensures both personal safety and high-quality results.
+
+Work in a Safe Environment
+Your workspace should be clean, organized, and well-ventilated.
+● Use a stable table or countertop with good lighting.
+● Ensure proper air circulation.
+● Keep the surface clutter-free and away from flammable materials like curtains or paper.
+
+Never Melt Wax Directly on High Heat
+Always use a double boiler method. Never place wax directly on a stove burner, as it can catch fire if overheated. If wax begins to smoke, remove it from heat immediately.
+
+Monitor Wax Temperature
+Using a thermometer prevents the wax from becoming too hot. Most waxes should be heated between 160°F and 185°F (71°C to 85°C). Never leave melting wax unattended.
+
+Protect Your Skin
+Melted wax can cause burns. Wear heat-resistant gloves, avoid touching hot containers, and handle pouring pitchers carefully. If wax spills on your skin, rinse immediately with cool water.
+
+Keep Children and Pets Away
+Always make candles in an area where children and pets cannot reach hot equipment or knock over containers. A quiet, controlled workspace helps prevent accidents.
+
+Handle Fragrance Oils Carefully
+Avoid spilling fragrance oils on your skin or eyes. If a spill occurs, wash with soap and water immediately. Ensure good ventilation when working with strong scents.
+
+Prevent Wax Spills
+Cover your workspace with newspaper, old tablecloths, or silicone mats to protect surfaces from heat and spills.
+
+Fire Safety Tips
+● Never leave melting wax unattended.
+● Keep a fire extinguisher nearby.
+● Do not pour water on burning wax.
+● If wax catches fire, cover the container with a metal lid to cut off oxygen.
+
+Safe Candle Storage
+Store finished candles in a cool, dry place away from direct sunlight and heat sources like stoves or heaters.
+
+Safety Is Part of Being a Professional
+Professionalism begins with safety. Safety is not something to fear — it is simply part of learning the craft properly.
+
+Chapter 8: The Step-by-Step Process
+The core candle making process is straightforward once you understand the 8 steps: prepare, measure, melt, add scent/color, prepare wick, pour, cool, and cure.
+
+Step 1: Prepare Your Workspace
+Gather all tools, clean your work surface and jars, and cover the area to protect it from spills.
+
+Step 2: Measure Your Wax
+Use a digital scale for accurate weights. To estimate, fill your jar with flakes and add a bit extra to account for melting.
+
+Step 3: Melt the Wax
+Heat the water in your double boiler slowly. Stir Occasionally and monitor the temperature (170–185°F / 77–85°C).
+
+Step 4: Add Fragrance and Color
+Remove wax from heat. Add fragrance oil when the wax is between 60-65°C and stir slowly for 2-3 minutes. Mix in color dye thoroughly.
+
+Step 5: Prepare the Wick
+Secure the wick to the bottom with a sticker or glue dot. Use a wick holder to keep it straight.
+
+Step 6: Controlled Pouring
+Most container waxes pour best between 130–150°F (50-65°C). Pour slowly to prevent air bubbles, leaving a small space at the top.
+
+Step 7: Natural Cooling Process
+Allow the candle to cool naturally at room temperature. Do not move it while it is cooling to avoid disturbing the surface.
+
+Step 8: Final Trimming and Curing
+Trim the wick to 1/4 inch and allow the candle to cure for 3 to 7 days to let the fragrance bond fully.
+
+Chapter 9: Full Beginner Tutorial
+This step-by-step guide will help you create a medium-sized scented jar candle (approx. 200g wax).
+
+Material Checklist
+● 200g Soy wax
+● Heat-resistant glass jar
+● Pre-waxed cotton wick & tab
+● Wick sticker & holder
+● 16g Fragrance oil (8% load)
+● Liquid dye (optional)
+● Double boiler & thermometer
+● Heat gloves & stirring utensil
+
+Detailed Walkthrough
+1. Prepare Workspace: Cover table and organize tools.
+2. Secure Wick: Stick the tab to the bottom and center it with a holder.
+3. Melt Wax: Heat 200g wax in a double boiler to 170-185°F.
+4. Add Color: Mix a few drops of dye into the melted wax.
+5. Add Fragrance: Remove from heat, stir in 16g oil for 1-2 minutes.
+6. Pour Wax: Cool to 130-150°F and pour slowly.
+7. Cool & Set: Let sit undisturbed until fully hardened.
+8. Trim Wick: Cut to 1/4 inch (6mm).
+9. Cure: Wait 3-7 days for maximum scent throw.
+10. Light & Enjoy: Observe the burn and make notes for your next batch.
+
+Chapter 10: Advanced Decorative Techniques
+Once you master the basics, you can elevate your products with artistic styles like layering, marbling, and embedding.
+
+Layered Candles
+Pour different colored layers one at a time, allowing each to partially cool (firm but sticky) before adding the next. Use complementary colors for seasonal collections.
+
+Marbled Candles
+Melt two or more colors separately and pour them simultaneously, then gently swirl with a skewer. Don't over-swirl!
+
+Decorative Embedding and Texturing
+● Embed objects: Use ONLY candle-safe items like dried flowers or herbs.
+● Textured surfaces: Use silicone molds or pattern tools.
+● Layered fragrances: Combine scents for a complex experience.
+
+Professional Finishing Touches
+● Smooth Surfaces: Use a heat gun to fix surface imperfections.
+● Polished Edges: Trim excess wax and clean container rims.
+● Consistent Presentation: Use measurement tools for repeatable results.
 `;
