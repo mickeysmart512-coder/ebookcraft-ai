@@ -12,7 +12,7 @@ interface MinimalistLayoutProps {
     content: string;
 }
 
-export const MinimalistChecklistRefinement: React.FC<MinimalistLayoutProps> = ({ title, subtitle, author, content }) => {
+export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, subtitle, author, content }) => {
     const lines = content.split('\n');
     const isTOC = content.toLowerCase().includes('archive index') || content.toLowerCase().includes('table of contents');
 
