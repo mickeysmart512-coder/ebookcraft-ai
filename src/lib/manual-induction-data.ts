@@ -1,25 +1,59 @@
-export const CANDLE_MAKING_CONTENT = `
-~Archive Index~
-PART 1: Candle Making Basics
-   Chapter 1: Understanding Candle Making
-      What is a Candle?
-      The Science Behind Candles
-      How Candles Burn
-      Basic Candle Terminology
-      Types of Candles Explained
-   Chapter 2: Essential Candle Making Tools
-      Complete Beginner Tool List
-      Where to Buy Candle Supplies
-   Chapter 3: Types of Candle Wax
-      Paraffin Wax
-      Soy Wax
-      Beeswax
-   Chapter 4: Understanding Candle Wicks
-      Choosing the Right Wick Size
-   Chapter 5: Fragrance Oils and Essential Oils
-      Fragrance Load Explained
-   Chapter 6: Candle Dyes and Colorants
-      How to Color Candles Properly
+export const CANDLE_MAKING_CONTENT = `~ ARCHIVE INDEX ~
+
+Introduction
+● Welcome to Candle Making with Preshy
+● My Candle Journey (Your Story)
+● Why Candle Making Is a Powerful Skill
+● Who This Book Is For
+● What You Will Learn in This Guide
+● How to Use This Book for Best Results
+
+PART 1: CANDLE MAKING BASICS
+Chapter 1: Understanding Candle Making
+● What is a Candle?
+● The Science Behind Candles
+● How Candles Burn
+● Basic Candle Terminology
+● Types of Candles Explained
+○ Container candles
+○ Pillar candles
+○ Votive candles
+○ Taper candles
+○ Wax melts
+
+Chapter 2: Essential Candle Making Tools
+● Complete Beginner Tool List
+● Must-Have Tools vs Optional Tools
+● Affordable Tools for Beginners
+● Where to Buy Candle Supplies
+● Setting Up Your Candle Workspace
+
+Chapter 3: Types of Candle Wax
+● Paraffin Wax
+● Soy Wax
+● Beeswax
+● Coconut Wax
+● Palm Wax
+● Blended Waxes
+
+Chapter 4: Understanding Candle Wicks
+● Choosing the Right Wick Size
+● Types of Wicks (Cotton, Wood, Hemp)
+● Wick Testing and Why It's Crucial
+● Wicking for Different Wax Types
+
+Chapter 5: Fragrance Oils and Essential Oils
+● Fragrance Load Explained
+● Calculating Fragrance Load
+● Blending Fragrance Oils
+● Essential Oils vs. Fragrance Oils
+● Safety with Fragrance Oils
+
+Chapter 6: Candle Dyes and Colorants
+● How to Color Candles Properly
+● Types of Dyes (Liquid, Chip, Block)
+● Achieving Consistent Color
+● Natural Colorants
 
 PART 2: Making Your First Candle
    Chapter 7: Candle Making Safety

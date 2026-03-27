@@ -92,7 +92,7 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                                 >
                                     <span className="text-[11px] font-black uppercase tracking-[1em] text-[#cec2b5] mb-2 block font-serif italic print:text-slate-400">Digital Publication</span>
                                     <h1 className="text-6xl font-light tracking-tighter mb-6 text-slate-900 leading-none" style={{ fontFamily: "'Playfair Display', serif" }}>
-                                        Archive Index
+                                        Table of Contents
                                     </h1>
                                     <div className="w-full h-[2px] bg-slate-900/10 mb-2" />
                                     <div className="w-1/3 h-[1px] bg-[#cec2b5] mb-6" />
@@ -154,14 +154,17 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
 
                                     // Special TOC Headers
                                     const isPartHeader = trimmed.startsWith('PART');
+                                    const isIntroHeader = trimmed === 'Introduction';
                                     const isChapterNum = trimmed.startsWith('Chapter');
+                                    const isSubBullet = trimmed.startsWith('●');
+                                    const isNestedBullet = trimmed.startsWith('○');
                                     const isTildeHeader = trimmed.startsWith('~') && trimmed.endsWith('~');
 
                                     if (isTOC) {
-                                        if (isPartHeader) {
+                                        if (isPartHeader || isIntroHeader) {
                                             return (
-                                                <div key={i} className="mb-6 mt-4 break-inside-avoid">
-                                                    <div className="text-[12px] font-black text-slate-900 border-b-4 border-[#cec2b5] pb-2 mb-4 uppercase tracking-[0.2em]">
+                                                <div key={i} className="mb-6 mt-8 break-inside-avoid">
+                                                    <div className="text-[14px] font-bold text-[#8B5A2B] border-b-2 border-[#cec2b5] pb-2 mb-4 uppercase tracking-[0.2em] font-serif">
                                                         {trimmed}
                                                     </div>
                                                 </div>
@@ -169,17 +172,29 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                                         }
                                         if (isChapterNum) {
                                             return (
-                                                <div key={i} className="mb-2 break-inside-avoid text-[10px] font-bold text-slate-700 uppercase tracking-widest pl-3 border-l-2 border-slate-200">
+                                                <div key={i} className="mb-3 break-inside-avoid text-[12px] font-bold text-slate-800 tracking-wide mt-4 font-serif italic">
                                                     {trimmed}
                                                 </div>
                                             );
                                         }
-                                        if (!isTildeHeader) {
+                                        if (isSubBullet) {
                                             return (
-                                                <div key={i} className="mb-1 break-inside-avoid text-[9px] text-slate-500 font-medium pl-6 opacity-80 italic">
-                                                    {trimmed}
+                                                <div key={i} className="mb-1.5 break-inside-avoid text-[10px] text-slate-600 font-medium pl-4 flex items-start gap-2">
+                                                    <span className="text-[#cec2b5] mt-0.5">●</span>
+                                                    <span>{trimmed.replace('●', '').trim()}</span>
                                                 </div>
                                             );
+                                        }
+                                        if (isNestedBullet) {
+                                            return (
+                                                <div key={i} className="mb-1.5 break-inside-avoid text-[9.5px] text-slate-500 font-medium pl-10 flex items-start gap-2 italic">
+                                                    <span className="text-[#cec2b5] mt-0.5">○</span>
+                                                    <span>{trimmed.replace('○', '').trim()}</span>
+                                                </div>
+                                            );
+                                        }
+                                        if (isTildeHeader && trimmed.toLowerCase().includes("archive index")) {
+                                            return null;
                                         }
                                         return null;
                                     }
@@ -299,9 +314,10 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
             </div>
 
             <style jsx global>{`
-                @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap');
                 body {
                     background-color: #f1f5f9 !important;
+                    font-family: 'Poppins', sans-serif;
                 }
                 @media print {
                     @page {
