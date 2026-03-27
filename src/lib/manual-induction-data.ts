@@ -15,11 +15,6 @@ Chapter 1: Understanding Candle Making
 ● How Candles Burn
 ● Basic Candle Terminology
 ● Types of Candles Explained
-○ Container candles
-○ Pillar candles
-○ Votive candles
-○ Taper candles
-○ Wax melts
 
 Chapter 2: Essential Candle Making Tools
 ● Complete Beginner Tool List
@@ -27,6 +22,29 @@ Chapter 2: Essential Candle Making Tools
 ● Affordable Tools for Beginners
 ● Where to Buy Candle Supplies
 ● Setting Up Your Candle Workspace
+
+Chapter 4: Understanding Candle Wicks
+● Why the Wick is the Soul of the Candle
+● How Capillary Action Works
+● Cotton vs Wooden vs Zinc Wicks
+● Choosing the Right Wick Size
+● Preventing Candle Tunneling
+● Wick Positioning and Trimming
+
+Chapter 5: Fragrance Oils and Essential Oils
+● Creating an Emotional Scent Experience
+● Fragrance Oils vs Essential Oils
+● Understanding Fragrance Load (%)
+● Hot Throw vs Cold Throw
+● Popular Scent Families (Floral, Fruity, Woody)
+● Creating Custom Signature Blends
+
+Chapter 6: Candle Dyes and Coloring
+● The Psychology of Candle Color
+● Types of Dyes: Liquid, Chips, Powders
+● Natural Colorant Options
+● How to Mix Custom Shades
+● Avoiding Common Coloring Mistakes
 
 Introduction
 Welcome to Candle Making with Preshy! From First Pour to First Sale: A Beginner to Boss Candle Making Guide.
@@ -202,4 +220,186 @@ You do not need a large studio to start. A small kitchen table or dedicated corn
 
 Starting Simple Is the Best Strategy
 Many beginners believe they need a large collection of tools before starting. The truth is that some of the best candle makers began with very simple setups. What matters most is learning the process, practicing regularly, and improving your technique. Every expert candle maker once started with their very first melt and pour. And soon, you will too.
+
+Chapter 4: Understanding Candle Wicks
+Many beginners believe the wax or fragrance is the most important part of a candle. But experienced candle makers know something very important: the wick can make or break a candle. Even if you use the best wax and the most beautiful fragrance, the candle will not perform well if the wick is wrong. A wick that is too small may cause tunneling. A wick that is too large may cause smoking and fast burning. This is why understanding wicks is one of the most important skills every candle maker must learn. In this chapter, you will learn how wicks work, the different types of wicks available, and how to choose the right wick for your candles.
+
+What Is a Candle Wick?
+A candle wick is the cord that runs through the center of the candle and carries melted wax to the flame. When a candle is lit, the wick draws melted wax upward. The wax then vaporizes and burns, producing light and heat. Without the wick, the candle would not be able to sustain a flame. The wick works like a tiny fuel delivery system. Its job is to pull melted wax toward the flame at the correct rate so the candle burns evenly.
+
+How Candle Wicks Work
+The wick uses a process called capillary action. This is the same process that allows a sponge to absorb water. When a candle burns, the flame melts wax around the wick, the melted wax travels up the wick, the wax turns into vapor near the flame, and the vapor burns to produce light. The wick must be the correct size and structure to maintain this cycle properly. If the wick pulls too much wax, the flame becomes too large. If the wick pulls too little wax, the flame becomes weak. This balance is what candle makers try to achieve.
+
+Types of Candle Wicks
+There are several types of wicks used in candle making. Each one behaves slightly differently.
+
+Cotton Wicks
+Cotton wicks are the most widely used candle wicks. They are made from braided cotton fibers and are often pre-waxed and attached to a metal base called a wick tab.
+● Easy for beginners to use
+● Widely available
+● Reliable performance
+● Work well with most wax types
+Cotton wicks are especially popular for container candles, making them a great choice for beginners.
+
+Wooden Wicks
+Wooden wicks are flat pieces of wood used instead of traditional string wicks. They have become very popular in modern candles because they produce a soft crackling sound when burning. This creates a cozy atmosphere similar to a fireplace.
+● Unique aesthetic appearance
+● Gentle crackling sound
+● Modern and premium feel
+Challenges: Wooden wicks are usually recommended after gaining some candle making experience as they can be more difficult to wick correctly and harder to keep lit.
+
+Zinc Core Wicks
+Zinc core wicks contain a thin metal core that helps the wick remain straight while burning. They are often used in container candles where a rigid wick helps maintain stability.
+● Stays upright in melted wax
+● Consistent flame
+● Good for deeper containers
+However, many modern candle makers prefer cotton wicks because they are simpler and more natural.
+
+Choosing the Right Wick Size
+Selecting the correct wick size is extremely important. The size of the wick determines how large the flame will be and how the candle burns. The correct wick size depends on several factors:
+● The diameter of the candle container
+● The type of wax used
+● The amount of fragrance oil
+● The type of wick material
+For example, a large container candle will require a larger wick than a small candle. If the wick is too small, the candle may tunnel. If the wick is too large, the candle may burn too hot.
+
+What Is Candle Tunneling?
+Tunneling happens when the candle burns straight down the center instead of melting the entire surface, leaving wax stuck around the edges. This usually happens when the wick is too small or the candle is not burned long enough during its first use.
+
+Wick Positioning Matters
+A wick should always be perfectly centered. If the wick is off-center, the candle may burn unevenly, causing overheating on one side or poor performance. Using wick holders or centering tools ensures the wick stays straight while the wax cools.
+
+Trimming the Wick
+Before lighting a candle, the wick should be trimmed to about 1/4 inch (about 6 mm). Trimming helps control flame size, reduce smoke, prevent soot, and improve candle life.
+
+Signs Your Wick Is Too Small
+● Weak flame
+● Candle tunneling
+● Wax pool does not reach the edges
+● Candle burns out early
+
+Signs Your Wick Is Too Large
+● Flame is too big
+● Candle produces smoke
+● Candle burns very quickly
+● Container becomes extremely hot
+
+Why Testing Is Essential
+Even experienced candle makers cannot always predict the perfect wick immediately. You may test two or three wick sizes before finding the one that burns perfectly with your wax, fragrance, and container.
+
+Mastering Wick Selection
+Understanding candle wicks takes patience, but it is one of the most rewarding skills. Once mastered, you will be able to create candles that burn evenly, release fragrance properly, and look more professional.
+
+Example Wick Testing Scenario
+Imagine you are making a 3-inch soy container candle. You might test:
+● CD 8 – flame too small, candle tunnels
+● CD 10 – good melt pool and steady flame
+● CD 12 – flame too large and produces soot
+In this case, CD 10 would be the best wick size.
+
+[TIP]Always keep a wick testing notebook to record wax type, container size, fragrance percentage, wick size, and burn results. This helps you replicate successful candles in the future.[/TIP]
+
+Chapter 5: Fragrance Oils and Essential Oils
+One of the things people love most about candles is their scent. A beautiful fragrance can transform a simple candle into something memorable. Learning how to choose and use fragrance properly will help you create candles that people truly love. In this chapter, you will learn the difference between fragrance oils and essential oils, how much scent to add, and how to create amazing scent blends.
+
+Why Fragrance Matters in Candle Making
+Fragrance does more than make a candle smell nice; it creates an experience and an emotional atmosphere. Scent also plays a powerful role in memory, making handmade candles even more special.
+
+Fragrance Oils vs Essential Oils
+
+Fragrance Oils
+Fragrance oils are specially formulated using natural and synthetic ingredients to create specific scents like vanilla, ocean breeze, or pumpkin spice.
+● Strong scent throw
+● Wide variety of options
+● Designed to perform well in candles
+● Long-lasting and reliable
+
+Essential Oils
+Essential oils are natural oils extracted directly from plants, such as lavender, lemon, or peppermint.
+● Natural plant-based ingredients
+● Popular for natural product preference
+● Authentic aromas
+Challenges: Essential oils are often more expensive, and some may lose their scent strength when heated in candles.
+
+What Is Fragrance Load?
+Fragrance load refers to the percentage of fragrance oil added to the wax. For example, if your wax allows an 8% load, you can add 80g of oil to 1000g of wax. Adding too much fragrance can lead to oil leaking or poor burning performance.
+
+When to Add Fragrance Oil
+Timing is critical. Fragrance should typically be added when the wax temperature is between 170°F and 185°F (77°C to 85°C). After adding, stir slowly for one to two minutes to help the fragrance bind with the wax.
+
+Understanding Hot Throw and Cold Throw
+● Cold Throw: The scent of the candle before it is lit.
+● Hot Throw: The scent released while the candle is burning.
+
+Popular Candle Fragrance Categories
+● Floral: Rose, Jasmine, Lavender (Elegant and calming)
+● Fruity: Strawberry, Mango, Apple (Vibrant and summer-ready)
+● Fresh and Clean: Linen, Ocean Breeze, Rain (Refreshing)
+● Sweet and Dessert: Vanilla, Caramel, Chocolate (Cozy)
+● Woody and Earthy: Sandalwood, Cedarwood, Patchouli (Grounding)
+
+Creating Your Own Fragrance Blends
+Blending fragrances allows you to create signature candles.
+● Vanilla + Coffee = Coffeehouse
+● Lavender + Vanilla = Relaxation
+● Orange + Cinnamon = Warm Holiday
+
+Tips for Stronger Scent Throw
+● Use high-quality fragrance oils
+● Measure fragrance accurately
+● Add fragrance at the correct temperature
+● Stir wax thoroughly
+● Allow candles to cure properly for 3 to 7 days
+
+Fragrance Is the Soul of Your Candle
+A candle’s fragrance is often the first thing people notice. When you learn to work with oils properly, you create candles that people remember and return to again and again.
+
+Chapter 6: Candle Dyes and Coloring
+While fragrance gives a candle its personality, color gives it visual beauty. Coloring candles allows you to express creativity and make your candles look professional and attractive. However, adding color requires knowledge of dyes and how they affect the burn. In this chapter, you will learn about types of dyes, how to add color properly, and how to avoid mistakes.
+
+Why Candle Color Matters
+Color attracts attention and can represent seasons, moods, or the fragrance itself. Visual identity is key to professional candle making.
+
+Types of Candle Dyes
+
+Liquid Candle Dyes
+Liquid dyes are easy for beginners. Added drop by drop, they mix smoothly and allow for precise color control.
+
+Dye Chips or Dye Blocks
+These are pre-measured solid pieces of color that melt into the wax. They are great for consistent coloring in larger batches.
+
+Powder Dyes
+Highly concentrated and strong, powder dyes are long-lasting but must be measured carefully to avoid making colors too dark.
+
+Natural Colorants
+Ingredients like turmeric or beetroot powder can be used, but they can sometimes affect wax texture or clog the wick. Professional candle dyes are usually preferred.
+
+How to Add Color to Candles
+1. Melt your wax completely.
+2. Add the dye while the wax is still hot.
+3. Stir thoroughly until dissolved.
+4. Check the color before adding fragrance oil.
+Note: Melted wax always appears darker than it will look when it hardens.
+
+[SAFETY]Adding too much dye can cause poor burning, clogged wicks, and excess smoke. Start with a small amount; light colors often appear more professional.[/SAFETY]
+
+Color Testing Is Important
+Always test your colors by letting a small amount of dyed wax cool completely before making a large batch.
+
+Mixing Candle Colors
+● Red + Yellow = Orange
+● Blue + Yellow = Green
+● Red + Blue = Purple
+
+Avoiding Common Coloring Mistakes
+● Always use dyes made specifically for candles.
+● Stir thoroughly to avoid uneven coloring.
+● Do not exceed recommended dye amounts.
+● Test colors before final pouring.
+
+Color and Branding
+Consistent colors help customers recognize your brand. For example, a "Calm Collection" might use soft blues and lavender tones.
+
+Beautiful Candles Combine Color and Fragrance
+A truly beautiful candle appeals to both the eyes and the senses. Matching a soft purple color with a lavender scent makes the product feel more thoughtful and professional.
 `;
