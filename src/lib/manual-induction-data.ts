@@ -108,11 +108,20 @@ Chapter 14: Pricing and Business Growth
 ● Market Research and Etsy Positioning
 ● Scaling from Hobbies to Retail Brands
 
-30-Day Candle Boss Plan
+PART FOUR: LAUNCHING YOUR CANDLE BRAND
+Chapter 15: The 30-Day Business Plan
+● A Comprehensive Day-by-Day Launch Roadmap
 ● Week 1: Foundation and Sourcing
 ● Week 2: Prototype and Practice
 ● Week 3: Branding and Identity
 ● Week 4: Launch and Sales Strategy
+
+Chapter 16: Scaling and Recipes
+● Beginner-Friendly Core Recipes (Lavender, Citrus, Vanilla)
+● Operational Scaling Strategies
+● Multi-Channel Selling Tactics (Online & Local)
+● 7 Critical Mistakes to Avoid for New Businesses
+● Your Path from Beginner to Candle Boss
 
 Introduction
 Welcome to Candle Making with Preshy! From First Pour to First Sale: A Beginner to Boss Candle Making Guide.
@@ -265,7 +274,7 @@ Dye Chips/Blocks: Pre-measured solid color, great for large batches.
 Powder Dyes: Highly concentrated and vibrant.
 
 How to Color Properly
-Add dye while the wax is at its hottest and stir until dissolved. Remember: Melted wax appears darker than it will look when cooled.
+Add dye while the wax is at its hottest and stir until dissolved. Remember: Melted wax appears darker than it will look when it hardens.
 
 [SAFETY]Adding too much dye can clog the wick or cause excessive smoke. Start with small amounts for a professional, elegant look.[/SAFETY]
 
@@ -322,7 +331,7 @@ Elevate your brand with unique visual styles.
 
 Layering and Marbling
 Layered Candles: Pour colored layers sequentially, letting each firm slightly before adding the next.
-Marbling: Simultaneously pour multiple colors and swirl gently with a skewer.
+Marbled Candles: Simultaneously pour multiple colors and swirl gently with a skewer.
 
 Professional Finishing
 Use a heat gun to smooth surface imperfections. Polished edges and consistent branding increase the "perceived value" of your candles, making them ready for retail sale.
@@ -383,4 +392,75 @@ The 5-Step Formula
 5. Market Research: Check competitors (Etsy, local boutiques) to position your brand.
 
 By combining quality candles with smart pricing, you transform a hobby into a scalable business.
+
+[PART]PART FOUR: Launching Your Candle Brand[/PART]
+
+Chapter 15: The 30-Day Business Plan
+Turning candle making into a business requires a clear roadmap. This 30-day plan guides you from brand definition to your official launch.
+
+A 30-Day Plan to Start and Scale Your Scented Candle Brand
+[GRID]
+Day | Focus | What To Do
+Day 1 | Define Your Brand | Choose a brand name, story, and candle type (luxury, relaxation, etc.).
+Day 2 | Identify Your Target Market | Decide who your candles are for (decor lovers, spa buyers, etc.).
+Day 3 | Research Competitors | Note prices, packaging, and scents of brands on Instagram/TikTok.
+Day 4 | Choose Signature Scents | Select 3–5 scents to start with (e.g., vanilla, lavender, citrus).
+Day 5 | Calculate Production Cost | Work out cost of wax, fragrance oils, jars, wicks, and shipping.
+Day 6 | Decide Your Pricing | Use the cost × 2 or × 3 rule to set a profitable selling price.
+Day 7 | Design Your Packaging | Choose jars and labels that match your brand identity.
+Day 8 | Buy Initial Supplies | Purchase small starter quantities of wax, wicks, and jars.
+Day 9 | Create Test Candles | Make your first batch and test scent strength and burn quality.
+Day 10 | Improve Your Formula | Adjust wick size or fragrance amount based on test results.
+Day 11 | Finalize Your Products | Choose the best 3 candles for your launch collection.
+Day 12 | Design Labels | Create labels with brand name, scent, and safety instructions.
+Day 13 | Create Brand Logo | Use tools like Canva to design a professional, simple logo.
+Day 14 | Photograph Products | Take clean photos using natural light and simple backgrounds.
+Day 15 | Create Social Pages | Open business accounts on Instagram, TikTok, and Facebook.
+Day 16 | Post First Content | Share your brand story and behind-the-scenes processes.
+Day 17 | Build Anticipation | Post teaser content like "Something beautiful is coming..."
+Day 18 | Prepare Inventory | Make 10–30 candles for your official launch stock.
+Day 19 | Create Price List | Clearly list scents, sizes, and prices for your customers.
+Day 20 | Soft Launch | Sell to friends, family, and early supporters.
+Day 21 | Collect Feedback | Ask customers about scent, packaging, and burn quality.
+Day 22 | Improve Product | Make small improvements based on customer feedback.
+Day 23 | Create Video Content | Post candle pouring and scent mixing videos.
+Day 24 | Run a Giveaway | Offer a free candle to increase followers and engagement.
+Day 25 | Influencer Collabs | Send candles to small influencers for genuine reviews.
+Day 26 | Create Bundle Offers | Launch sets such as "Relaxation Set – Lavender + Vanilla."
+Day 27 | Offer Gift Options | Position candles as perfect gifts for birthdays and celebrations.
+Day 28 | Track Sales | Record your expenses, profits, and best-selling scents.
+Day 29 | Plan Expansion | Consider new scents or seasonal collections.
+Day 30 | Official Brand Launch | Announce your full launch with promotions and limited offers.
+[/GRID]
+
+Chapter 16: Scaling and Recipes
+Putting it all together: create your candles, plan production, and start selling with these final strategies.
+
+Beginner-Friendly Candle Recipes
+1. Classic Lavender Soy Candle: 200g soy wax, 16g lavender oil (8%), optional purple dye. Perfect for relaxation collections.
+2. Citrus Sunshine Candle: 200g soy wax, 16g citrus blend (orange + lemon), optional yellow dye. High visual appeal for summer.
+3. Vanilla Cinnamon Cozy Candle: 200g soy wax, 16g vanilla oil, 4g cinnamon twist, optional warm cream dye. Ideal for home comfort and holidays.
+
+Scaling Production for Success
+1. Plan Batch Size: Multiply ingredients by the number of candles (e.g., 2kg wax for 10 candles).
+2. Organize Materials: Pre-measure everything and set up wicks in advance.
+3. Melt in Large Batches: Use professional melters or stages to maintain consistency across the entire batch.
+4. Maintain Quality: Pour at the correct temperature and never rush the curing phase.
+
+Marketing and Selling Strategies
+Online Sales: Utilize Etsy, Shopify, or Amazon Handmade. Focus on photography and descriptive scent storytelling.
+Local Markets: Exhibit at craft fairs with sample scents. Build Relationships with local customers.
+Social Media: Post consistent behind-the-scenes content (pouring, mixing) on TikTok and Instagram.
+Pricing Strategy: Offer bundle discounts or first-time buyer incentives to encourage sales.
+
+7 Mistakes New Candle Businesses Must Avoid
+1. No Brand Identity: Avoid being generic. Define who your candles are for and what mood they represent.
+2. Low-Quality Materials: Never use cheap wax or weak oils. Quality builds repeat customer trust.
+3. Poor Pricing Strategy: Never price too low. Calculate every cost—including your time.
+4. Ignoring Testing: Never sell an untested candle. Safety and performance are your responsibility.
+5. Neglecting Presentation: Packaging is decor. Clean labels and attractive jars increase perceived value.
+6. Inconsistent Marketing: Post regularly. Consistency builds brand awareness and sales.
+7. Over-Expansion: Start with 3–5 signature scents. Focus on quality before quantity.
+
+Congratulations! You have completed the journey from first pour to first sale. Your path as a Candle Boss begins now.
 `;
