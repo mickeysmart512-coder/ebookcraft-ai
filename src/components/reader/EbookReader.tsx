@@ -100,6 +100,8 @@ export function EbookReader({
         const props = {
             content: pageContent,
             title,
+            subtitle: isMaster ? "From First Pour to First Sale" : "",
+            author: isMaster ? "Ibenu Precious" : "",
             template,
             fontSize,
             isDarkMode,

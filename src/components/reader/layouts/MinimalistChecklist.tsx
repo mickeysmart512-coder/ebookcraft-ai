@@ -7,8 +7,8 @@ const poppins = Poppins({ subsets: ['latin'], weight: ['300', '400', '500', '600
 
 interface MinimalistLayoutProps {
     title: string;
-    subtitle: string;
-    author: string;
+    subtitle?: string;
+    author?: string;
     content: string;
 }
 
