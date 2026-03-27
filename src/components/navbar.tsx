@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Github } from "lucide-react";
+import { BookOpen } from "lucide-react";
 
 export function Navbar() {
     return (
