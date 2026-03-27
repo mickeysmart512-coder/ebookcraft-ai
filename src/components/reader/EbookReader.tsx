@@ -11,7 +11,8 @@ import {
     Moon,
     X,
     List,
-    BookOpen
+    BookOpen,
+    Download
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -38,6 +39,7 @@ export function EbookReader({
     const [fontSize, setFontSize] = useState(18);
     const [showSidebar, setShowSidebar] = useState(false);
     const [viewMode, setViewMode] = useState<'paginated' | 'feed'>('paginated');
+    const [isPrinting, setIsPrinting] = useState(false);
 
     const isMaster = title.toLowerCase().includes("candle");
 
@@ -152,6 +154,16 @@ export function EbookReader({
                             <List className="h-4 w-4 mr-2" /> <span className="text-[10px] font-bold">Feed</span>
                         </Button>
                     </div>
+                    <Button
+                        variant="secondary"
+                        size="sm"
+                        className="h-8 rounded-lg bg-[#cec2b5] text-white hover:bg-[#bfae9a]"
+                        onClick={() => {
+                            window.print();
+                        }}
+                    >
+                        <Download className="h-4 w-4 mr-2" /> <span className="text-[10px] font-bold">PDF</span>
+                    </Button>
                     <Button variant="ghost" size="icon" onClick={() => setIsDarkMode(!isDarkMode)}>
                         {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                     </Button>
@@ -198,6 +210,15 @@ export function EbookReader({
                         </Button>
                     </div>
                 )}
+            </div>
+
+            {/* Hidden Print Container - Renders ALL pages for high-fidelity PDF export */}
+            <div className="hidden print:block absolute inset-0 bg-white z-[9999]">
+                {pages.map((page, i) => (
+                    <div key={i} className="A4-page">
+                        {renderLayout(page, i)}
+                    </div>
+                ))}
             </div>
         </div>
     );
