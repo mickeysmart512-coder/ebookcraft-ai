@@ -162,7 +162,7 @@ export function EbookReader({
                             window.print();
                         }}
                     >
-                        <Download className="h-4 w-4 mr-2" /> <span className="text-[10px] font-bold">PDF</span>
+                        <Download className="h-4 w-4 mr-2" /> <span className="text-[10px] font-bold">Download PDF</span>
                     </Button>
                     <Button variant="ghost" size="icon" onClick={() => setIsDarkMode(!isDarkMode)}>
                         {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -213,9 +213,9 @@ export function EbookReader({
             </div>
 
             {/* Hidden Print Container - Renders ALL pages for high-fidelity PDF export */}
-            <div className="hidden print:block absolute inset-0 bg-white z-[9999]">
+            <div className="hidden print:block bg-white w-full print-container">
                 {pages.map((page, i) => (
-                    <div key={i} className="A4-page">
+                    <div key={i} className="A4-page break-after-page">
                         {renderLayout(page, i)}
                     </div>
                 ))}

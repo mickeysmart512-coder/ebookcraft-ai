@@ -22,13 +22,12 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
 
     // A4 Optimization Wrapper
     return (
-        <div className="flex justify-center p-2 w-full overflow-x-hidden selection:bg-[#cec2b5]/30 print:p-0 print:bg-white">
+        <div className="flex justify-center p-2 w-full overflow-x-hidden selection:bg-[#cec2b5]/30 print:p-0 print:m-0 print:block">
             <div
-                className="bg-[#fff9f5] shadow-[0_45px_90px_rgba(0,0,0,0.18)] relative overflow-hidden flex flex-col transform origin-top transition-all duration-500 scale-[0.75] md:scale-90 lg:scale-100 border border-slate-200 print:shadow-none print:border-none print:scale-100 print:m-0 print:w-[210mm] print:h-[297mm] print:bg-white"
+                className="bg-[#fff9f5] shadow-[0_45px_90px_rgba(0,0,0,0.18)] relative overflow-hidden flex flex-col transform origin-top transition-all duration-500 scale-[0.75] md:scale-90 lg:scale-100 border border-slate-200 print:shadow-none print:border-none print:scale-100 print:m-0 print:w-[210mm] print:h-[297mm] print:bg-white print:relative print:overflow-hidden print:page-break-after-always"
                 style={{
                     width: '210mm',
                     height: '297mm',
-                    margin: '0 auto'
                 }}
             >
                 {/* Background Accents (Hidden in print to save ink/keep clean) */}
@@ -307,18 +306,31 @@ export function MinimalistChecklist({ content, title, template, fontSize, isDark
                 @media print {
                     @page {
                         size: A4 portrait;
-                        margin: 0;
+                        margin: 0mm;
                     }
                     body {
                         background: white !important;
-                        margin: 0;
-                        padding: 0;
-                    }
-                    .print-hidden {
-                        display: none !important;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        -webkit-print-color-adjust: exact !important;
+                        print-color-adjust: exact !important;
                     }
                     .A4-page {
-                        page-break-after: always;
+                        display: block !important;
+                        page-break-after: always !important;
+                        break-after: page !important;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        width: 210mm !important;
+                        height: 297mm !important;
+                    }
+                    /* Hide everything EXCEPT the print container */
+                    body > *:not(.print-container) {
+                        display: none !important;
+                    }
+                    /* If using Next.js __next or similar wrappers, target them */
+                    #__next > *:not(.print-container) {
+                        display: none !important;
                     }
                 }
             `}</style>
