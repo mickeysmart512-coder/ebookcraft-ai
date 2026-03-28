@@ -62,7 +62,40 @@ export function EbookReader({
                     useCORS: true,
                     letterRendering: true,
                     scrollY: 0,
-                    scrollX: 0
+                    scrollX: 0,
+                    onclone: (clonedDoc: Document) => {
+                        // Fix for html2canvas not supporting modern color spaces (lab, oklch)
+                        const style = clonedDoc.createElement('style');
+                        style.innerHTML = `
+                            * { 
+                                transition: none !important;
+                                animation: none !important;
+                            }
+                            /* Overlay fix: ensures any background that might use lab() defaults to solid */
+                            .print-container { background-color: white !important; }
+                        `;
+                        clonedDoc.head.appendChild(style);
+
+                        // Scrub elements that might have problematic computed styles
+                        const elements = clonedDoc.getElementsByTagName('*');
+                        for (let i = 0; i < elements.length; i++) {
+                            const el = elements[i] as HTMLElement;
+                            // Critical: Check computed styles as Tailwind 4 uses lab/oklch for utilities
+                            const comp = window.getComputedStyle(el);
+
+                            if (comp.color.includes('lab') || comp.color.includes('oklch')) {
+                                el.style.setProperty('color', '#1e293b', 'important');
+                            }
+                            if (comp.backgroundColor.includes('lab') || comp.backgroundColor.includes('oklch')) {
+                                if (comp.backgroundColor !== 'rgba(0, 0, 0, 0)') {
+                                    el.style.setProperty('background-color', '#ffffff', 'important');
+                                }
+                            }
+                            if (comp.borderColor.includes('lab') || comp.borderColor.includes('oklch')) {
+                                el.style.setProperty('border-color', '#e2e8f0', 'important');
+                            }
+                        }
+                    }
                 },
                 jsPDF: {
                     unit: 'mm' as const,
