@@ -84,24 +84,33 @@ export function EbookReader({
                         });
 
                         const elements = clonedDoc.querySelectorAll('*');
-                        const unsupportedColors = ['oklch', 'lab', 'lch', 'color-mix'];
-
-                        const hasUnsupportedColor = (colorStr: string) => {
-                            return unsupportedColors.some(format => colorStr.includes(format));
-                        };
+                        const unsupported = ['oklch', 'lab', 'lch', 'color-mix'];
 
                         elements.forEach(el => {
-                            const style = window.getComputedStyle(el);
+                            const styles = window.getComputedStyle(el);
+                            // Manually check all common properties where Tailwind hides modern colors
+                            const propsToCheck = [
+                                'backgroundColor', 'color', 'borderColor', 'outlineColor',
+                                'textDecorationColor', 'boxShadow', 'textShadow', 'fill', 'stroke'
+                            ] as const;
 
-                            if (hasUnsupportedColor(style.backgroundColor)) {
-                                (el as HTMLElement).style.backgroundColor = '#ffffff'; // Fallback to white
-                            }
-                            if (hasUnsupportedColor(style.color)) {
-                                (el as HTMLElement).style.color = '#000000'; // Fallback to black
-                            }
-                            if (hasUnsupportedColor(style.borderColor)) {
-                                (el as HTMLElement).style.borderColor = '#e5e7eb'; // Fallback to light gray
-                            }
+                            propsToCheck.forEach(prop => {
+                                // @ts-ignore
+                                const val = styles[prop];
+                                if (val && unsupported.some(u => val.includes(u))) {
+                                    // Strip shadows completely, fallback colors to safe hex values
+                                    if (prop.includes('Shadow')) {
+                                        // @ts-ignore
+                                        (el as HTMLElement).style[prop] = 'none';
+                                    } else if (prop === 'color' || prop === 'fill' || prop === 'stroke') {
+                                        // @ts-ignore
+                                        (el as HTMLElement).style[prop] = '#000000';
+                                    } else {
+                                        // @ts-ignore
+                                        (el as HTMLElement).style[prop] = '#ffffff';
+                                    }
+                                }
+                            });
                         });
                     }
                 },
@@ -243,7 +252,8 @@ export function EbookReader({
                 {/* Hidden Print Container */}
                 <div
                     ref={printRef}
-                    className="fixed top-0 left-0 z-[-1] opacity-100 bg-white w-full print-container"
+                    // Changed to absolute and moved far off-screen so it renders fully without being blocked by background colors
+                    className="absolute top-[-9999px] left-[-9999px] z-[9999] opacity-100 bg-white w-full print-container"
                     style={{ width: '210mm', pointerEvents: 'none' }}
                 >
                     {pages.map((page, i) => (
