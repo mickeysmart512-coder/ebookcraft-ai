@@ -73,9 +73,15 @@ export function EbookReader({
             };
 
             await html2pdf().from(printRef.current).set(opt).save();
-        } catch (error) {
+            console.log('PDF Successfully Generated');
+        } catch (error: any) {
             console.error('PDF Generation Error:', error);
-            alert('Failed to generate PDF. Please try again.');
+            // More specific error alerts for the user
+            if (error.message?.includes('Canvas')) {
+                alert('Rendering error: The e-book might be too large for your browser to process. Try downloading in chunks.');
+            } else {
+                alert(`Failed to generate PDF: ${error.message || 'Unknown error'}. Please check your console for details.`);
+            }
         } finally {
             setIsExporting(false);
         }
@@ -280,8 +286,11 @@ export function EbookReader({
             {/* Hidden Print Container - Renders ALL pages for high-fidelity PDF export */}
             <div
                 ref={printRef}
-                className={`${isExporting ? 'fixed top-0 left-[-9999px] block' : 'hidden'} print:block bg-white w-full print-container`}
-                style={{ width: '210mm' }}
+                className={`${isExporting ? 'absolute top-0 left-0 z-0 opacity-100' : 'hidden'} print:block bg-white w-full print-container`}
+                style={{
+                    width: '210mm',
+                    pointerEvents: 'none'
+                }}
             >
                 {pages.map((page, i) => (
                     <div key={i} className="A4-page break-after-page">
