@@ -72,6 +72,7 @@ export function EbookReader({
                 html2canvas: {
                     scale: 2,
                     useCORS: true,
+                    foreignObjectRendering: true,
                     windowWidth: document.documentElement.offsetWidth,
                     onclone: (clonedDoc: Document) => {
                         const styleTags = clonedDoc.querySelectorAll('style');
@@ -252,9 +253,8 @@ export function EbookReader({
                 {/* Hidden Print Container */}
                 <div
                     ref={printRef}
-                    // Changed to absolute and moved far off-screen so it renders fully without being blocked by background colors
-                    className="absolute top-[-9999px] left-[-9999px] z-[9999] opacity-100 bg-white w-full print-container"
-                    style={{ width: '210mm', pointerEvents: 'none' }}
+                    className="bg-white w-full print-container px-4 py-8 mx-auto"
+                    style={{ width: '210mm' }}
                 >
                     {pages.map((page, i) => (
                         <div key={i} className="A4-page break-after-page">
