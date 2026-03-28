@@ -72,6 +72,7 @@ export function EbookReader({
                 html2canvas: {
                     scale: 2,
                     useCORS: true,
+                    foreignObjectRendering: true,
                     letterRendering: true,
                     scrollY: 0,
                     windowWidth: document.documentElement.offsetWidth,
@@ -195,7 +196,10 @@ export function EbookReader({
 
     useEffect(() => {
         if (autoDownload && pages.length > 0 && !isExporting) {
-            handleDownloadPDF().then(onClose);
+            const timer = setTimeout(() => {
+                handleDownloadPDF().then(onClose);
+            }, 1000); // Allow DOM and fonts to settle
+            return () => clearTimeout(timer);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [autoDownload, pages]);
