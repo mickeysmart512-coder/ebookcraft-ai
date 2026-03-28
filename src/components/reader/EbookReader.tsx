@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { TEMPLATES, EbookTemplate } from "@/lib/templates";
 import { Button } from "@/components/ui/button";
 import {
@@ -40,8 +40,46 @@ export function EbookReader({
     const [showSidebar, setShowSidebar] = useState(false);
     const [viewMode, setViewMode] = useState<'paginated' | 'feed'>('paginated');
     const [isPrinting, setIsPrinting] = useState(false);
+    const [isExporting, setIsExporting] = useState(false);
+    const printRef = useRef<HTMLDivElement>(null);
 
     const isMaster = title.toLowerCase().includes("candle");
+
+    const handleDownloadPDF = async () => {
+        if (!printRef.current) return;
+        setIsExporting(true);
+
+        try {
+            // @ts-ignore - html2pdf doesn't have official types easily available
+            const html2pdf = (await import('html2pdf.js')).default;
+
+            const opt = {
+                margin: 0,
+                filename: `${title.toLowerCase().replace(/\s+/g, '-')}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true,
+                    scrollY: 0,
+                    scrollX: 0
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            await html2pdf().from(printRef.current).set(opt).save();
+        } catch (error) {
+            console.error('PDF Generation Error:', error);
+            alert('Failed to generate PDF. Please try again.');
+        } finally {
+            setIsExporting(false);
+        }
+    };
 
     // Strict A4 Pagination Engine
     const pages = useMemo(() => {
@@ -160,12 +198,14 @@ export function EbookReader({
                     <Button
                         variant="secondary"
                         size="sm"
-                        className="h-8 rounded-lg bg-[#cec2b5] text-white hover:bg-[#bfae9a]"
-                        onClick={() => {
-                            window.print();
-                        }}
+                        disabled={isExporting}
+                        className="h-8 rounded-lg bg-[#cec2b5] text-white hover:bg-[#bfae9a] disabled:opacity-50"
+                        onClick={handleDownloadPDF}
                     >
-                        <Download className="h-4 w-4 mr-2" /> <span className="text-[10px] font-bold">Download PDF</span>
+                        <Download className={`h-4 w-4 mr-2 ${isExporting ? 'animate-bounce' : ''}`} />
+                        <span className="text-[10px] font-bold">
+                            {isExporting ? 'Generating...' : 'Download PDF'}
+                        </span>
                     </Button>
                     <Button variant="ghost" size="icon" onClick={() => setIsDarkMode(!isDarkMode)}>
                         {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -173,6 +213,28 @@ export function EbookReader({
                     <Button variant="ghost" size="icon" onClick={onClose}><X className="h-5 w-5" /></Button>
                 </div>
             </header>
+
+            <AnimatePresence>
+                {isExporting && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 z-[200] bg-white/90 backdrop-blur-md flex flex-col items-center justify-center"
+                    >
+                        <div className="w-64 h-2 bg-slate-100 rounded-full overflow-hidden mb-4">
+                            <motion.div
+                                className="h-full bg-[#8B5A2B]"
+                                initial={{ width: "0%" }}
+                                animate={{ width: "100%" }}
+                                transition={{ duration: 5, ease: "easeInOut" }}
+                            />
+                        </div>
+                        <span className="text-[12px] font-black tracking-[0.4em] text-[#8B5A2B] uppercase">Preparing Elite PDF</span>
+                        <span className="text-[10px] text-slate-400 mt-2">Optimizing A4 Proportions & Typography...</span>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <div className="flex-1 overflow-hidden relative">
                 {viewMode === 'paginated' ? (
@@ -216,7 +278,11 @@ export function EbookReader({
             </div>
 
             {/* Hidden Print Container - Renders ALL pages for high-fidelity PDF export */}
-            <div className="hidden print:block bg-white w-full print-container">
+            <div
+                ref={printRef}
+                className={`${isExporting ? 'fixed top-0 left-[-9999px] block' : 'hidden'} print:block bg-white w-full print-container`}
+                style={{ width: '210mm' }}
+            >
                 {pages.map((page, i) => (
                     <div key={i} className="A4-page break-after-page">
                         {renderLayout(page, i)}
