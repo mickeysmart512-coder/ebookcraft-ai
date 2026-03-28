@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { TEMPLATES, EbookTemplate } from "@/lib/templates";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,11 +27,13 @@ export function EbookReader({
     content,
     title,
     templateId,
+    autoDownload,
     onClose
 }: {
     content: string,
     title: string,
     templateId: string,
+    autoDownload?: boolean,
     onClose: () => void
 }) {
     const template = TEMPLATES.find(t => t.id === templateId) || TEMPLATES[0];
@@ -85,6 +87,16 @@ export function EbookReader({
                             .print-container { background-color: white !important; }
                         `;
                         clonedDoc.head.appendChild(style);
+
+                        // Also aggressively remove oklch and lab from stylesheets
+                        const styleTags = clonedDoc.querySelectorAll('style');
+                        styleTags.forEach((s) => {
+                            if (s.innerHTML) {
+                                s.innerHTML = s.innerHTML
+                                    .replace(/oklch\([^)]+\)/gi, '#1e293b')
+                                    .replace(/lab\([^)]+\)/gi, '#1e293b');
+                            }
+                        });
 
                         // Scrub elements that might have problematic computed styles
                         const elements = clonedDoc.getElementsByTagName('*');
@@ -181,6 +193,13 @@ export function EbookReader({
         return processedPages.filter(p => p.content.length > 2);
     }, [content, isMaster]);
 
+    useEffect(() => {
+        if (autoDownload && pages.length > 0 && !isExporting) {
+            handleDownloadPDF().then(onClose);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [autoDownload, pages]);
+
     const [currentPage, setCurrentPage] = useState(0);
 
     const renderLayout = (page: { content: string; isTOC: boolean }, index: number) => {
@@ -222,6 +241,40 @@ export function EbookReader({
 
     const isMinimalist = template.layoutId === 'minimal-checklist';
 
+    if (autoDownload) {
+        return (
+            <div className="fixed inset-0 z-[100] flex flex-col bg-white overflow-hidden">
+                <div className="absolute inset-0 z-[200] bg-white/90 backdrop-blur-md flex flex-col items-center justify-center">
+                    <div className="w-64 h-2 bg-slate-100 rounded-full overflow-hidden mb-4">
+                        <motion.div
+                            className="h-full bg-[#8B5A2B]"
+                            initial={{ width: "0%" }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: 5, ease: "easeInOut" }}
+                        />
+                    </div>
+                    <span className="text-[12px] font-black tracking-[0.4em] text-[#8B5A2B] uppercase">Preparing Elite PDF</span>
+                    <span className="text-[10px] text-slate-400 mt-2">Optimizing A4 Proportions & Typography...</span>
+                </div>
+                {/* Hidden Print Container */}
+                <div
+                    ref={printRef}
+                    className="absolute top-0 left-0 z-0 opacity-100 bg-white w-full print-container"
+                    style={{
+                        width: '210mm',
+                        pointerEvents: 'none'
+                    }}
+                >
+                    {pages.map((page, i) => (
+                        <div key={i} className="A4-page break-after-page">
+                            {renderLayout(page, i)}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className={`fixed inset-0 z-[100] flex flex-col transition-colors duration-500 ${isMinimalist ? 'bg-[#f1f5f9]' : (isDarkMode ? 'bg-[#020617] text-white' : 'bg-[#f8fafc] text-slate-900')}`}>
             <header className={`h-16 border-b flex items-center justify-between px-6 ${isMinimalist ? 'bg-white/80 border-slate-200' : 'bg-background/80 backdrop-blur'} z-50 shrink-0 shadow-sm backdrop-blur-md`}>
@@ -244,18 +297,6 @@ export function EbookReader({
                             <List className="h-4 w-4 mr-2" /> <span className="text-[10px] font-bold">Feed</span>
                         </Button>
                     </div>
-                    <Button
-                        variant="secondary"
-                        size="sm"
-                        disabled={isExporting}
-                        className="h-8 rounded-lg bg-[#cec2b5] text-white hover:bg-[#bfae9a] disabled:opacity-50"
-                        onClick={handleDownloadPDF}
-                    >
-                        <Download className={`h-4 w-4 mr-2 ${isExporting ? 'animate-bounce' : ''}`} />
-                        <span className="text-[10px] font-bold">
-                            {isExporting ? 'Generating...' : 'Download PDF'}
-                        </span>
-                    </Button>
                     <Button variant="ghost" size="icon" onClick={() => setIsDarkMode(!isDarkMode)}>
                         {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                     </Button>

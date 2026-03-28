@@ -11,6 +11,7 @@ import {
     Clock,
     ExternalLink,
     Play,
+    Download,
     Settings,
     MoreVertical,
     CheckCircle2
@@ -41,6 +42,7 @@ export default function DashboardPage() {
         title: string;
         content: string;
         templateId: string;
+        isDownloading?: boolean;
     } | null>(null);
 
     const startCrafting = (file: File) => {
@@ -98,7 +100,11 @@ export default function DashboardPage() {
                 content={selectedEbook.content}
                 title={selectedEbook.title}
                 templateId={selectedEbook.templateId}
-                onClose={() => setShowReader(false)}
+                autoDownload={selectedEbook.isDownloading}
+                onClose={() => {
+                    setShowReader(false);
+                    setSelectedEbook(prev => prev ? { ...prev, isDownloading: false } : null);
+                }}
             />
         );
     }
@@ -192,6 +198,32 @@ export default function DashboardPage() {
                                                     Processing...
                                                 </Badge>
                                             )}
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className={`h-8 w-8 ${!ebook.isMaster && 'opacity-0 group-hover:opacity-100'} transition-opacity`}
+                                                onClick={async () => {
+                                                    if (ebook.isMaster) {
+                                                        const { CANDLE_MAKING_CONTENT } = await import("@/lib/manual-induction-data");
+                                                        setSelectedEbook({
+                                                            title: ebook.title,
+                                                            content: CANDLE_MAKING_CONTENT,
+                                                            templateId: 'minimal-beige-checklist',
+                                                            isDownloading: true
+                                                        });
+                                                    } else {
+                                                        setSelectedEbook({
+                                                            title: ebook.title,
+                                                            content: "Sample content for " + ebook.title + ". \n\n This is a beautifully formatted ebook. It was designed to showcase the power of AI in book crafting.",
+                                                            templateId: ebook.template === "Modern Minimal" ? "modern-minimal" : (ebook.template === "Classic Literary" ? "classic-literary" : "sci-fi-neon"),
+                                                            isDownloading: true
+                                                        });
+                                                    }
+                                                    setShowReader(true);
+                                                }}
+                                            >
+                                                <Download className="h-4 w-4" />
+                                            </Button>
                                             <Button
                                                 variant={ebook.isMaster ? "default" : "ghost"}
                                                 size="icon"

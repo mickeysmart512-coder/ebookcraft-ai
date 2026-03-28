@@ -71,14 +71,14 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                             }
                             if (isChapterNum) {
                                 return (
-                                    <div key={i} className="mb-3 break-inside-avoid text-[12px] font-bold text-slate-800 tracking-wide mt-4 font-serif italic">
+                                    <div key={i} className="mb-3 break-inside-avoid text-[12px] font-bold text-[#1e293b] tracking-wide mt-4 font-serif italic">
                                         {trimmed}
                                     </div>
                                 );
                             }
                             if (isSubBullet) {
                                 return (
-                                    <div key={i} className="mb-1.5 break-inside-avoid text-[10px] text-slate-600 font-medium pl-4 flex items-start gap-2">
+                                    <div key={i} className="mb-1.5 break-inside-avoid text-[10px] text-[#475569] font-medium pl-4 flex items-start gap-2">
                                         <span className="text-[#cec2b5] mt-0.5">●</span>
                                         <span>{trimmed.replace('●', '').trim()}</span>
                                     </div>
@@ -86,7 +86,7 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                             }
                             if (isNestedBullet) {
                                 return (
-                                    <div key={i} className="mb-1.5 break-inside-avoid text-[9.5px] text-slate-500 font-medium pl-10 flex items-start gap-2 italic">
+                                    <div key={i} className="mb-1.5 break-inside-avoid text-[9.5px] text-[#64748b] font-medium pl-10 flex items-start gap-2 italic">
                                         <span className="text-[#cec2b5] mt-0.5">○</span>
                                         <span>{trimmed.replace('○', '').trim()}</span>
                                     </div>
@@ -96,10 +96,10 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                                 return (
                                     <div key={i} className="mb-12">
                                         <span className="text-[11px] font-black uppercase tracking-[1em] text-[#cec2b5] mb-2 block font-serif italic">Digital Publication</span>
-                                        <h1 className="text-6xl font-light tracking-tighter mb-6 text-slate-900 leading-none" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                        <h1 className="text-6xl font-light tracking-tighter mb-6 text-[#0f172a] leading-none" style={{ fontFamily: "'Playfair Display', serif" }}>
                                             Table of Contents
                                         </h1>
-                                        <div className="w-full h-[2px] bg-slate-900/10 mb-2" />
+                                        <div className="w-full h-[2px] bg-[#0f172a]/10 mb-2" />
                                         <div className="w-1/3 h-[1px] bg-[#cec2b5] mb-6" />
                                     </div>
                                 );
@@ -107,7 +107,7 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                             // Fallback for everything else in TOC
                             if (trimmed && !isTOCMarker && !isPartHeader && !isIntroHeader && !isChapterNum && !isSubBullet && !isNestedBullet) {
                                 return (
-                                    <div key={i} className="mb-1.5 break-inside-avoid text-[10px] text-slate-600 font-medium pl-4 flex items-start gap-2">
+                                    <div key={i} className="mb-1.5 break-inside-avoid text-[10px] text-[#475569] font-medium pl-4 flex items-start gap-2">
                                         <span className="text-[#cec2b5] mt-0.5">●</span>
                                         <span>{trimmed.replace(/[~●]/g, '').trim()}</span>
                                     </div>
@@ -122,10 +122,10 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                                 <div key={i} className="h-full flex flex-col justify-center items-center text-center my-[30mm] break-before-page">
                                     <div className="w-32 h-[1px] bg-[#cec2b5] mb-8" />
                                     <span className="text-[14px] font-black uppercase tracking-[0.5em] text-[#8B5A2B] mb-4">Section Divider</span>
-                                    <h1 className="text-6xl font-thin tracking-tighter text-slate-900 mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    <h1 className="text-6xl font-thin tracking-tighter text-[#0f172a] mb-8" style={{ fontFamily: "'Playfair Display', serif" }}>
                                         {trimmed}
                                     </h1>
-                                    <div className="w-48 h-[2px] bg-slate-900" />
+                                    <div className="w-48 h-[2px] bg-[#0f172a]" />
                                     <div className="mt-12 opacity-20">
                                         <Layers className="w-12 h-12 text-[#8B5A2B]" />
                                     </div>
@@ -138,14 +138,14 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                             return (
                                 <div key={i} className="mb-12 mt-16 first:mt-0 break-inside-avoid">
                                     <div className="flex items-center gap-4 mb-6">
-                                        <div className="h-[1px] flex-grow bg-slate-200" />
+                                        <div className="h-[1px] flex-grow bg-[#e2e8f0]" />
                                         <span className="text-[11px] font-black uppercase tracking-[0.3em] text-[#cec2b5] font-serif italic">Elite Document</span>
-                                        <div className="h-[1px] flex-grow bg-slate-200" />
+                                        <div className="h-[1px] flex-grow bg-[#e2e8f0]" />
                                     </div>
-                                    <h1 className="text-5xl font-light tracking-tight text-slate-900 leading-[1.1]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    <h1 className="text-5xl font-light tracking-tight text-[#0f172a] leading-[1.1]" style={{ fontFamily: "'Playfair Display', serif" }}>
                                         {trimmed.replace(/~/g, '')}
                                     </h1>
-                                    <div className="w-24 h-1 bg-slate-900 mt-8" />
+                                    <div className="w-24 h-1 bg-[#0f172a] mt-8" />
                                 </div>
                             );
                         }
@@ -165,13 +165,13 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                         // 4. Special Callouts (TIP / SAFETY)
                         if (isSafety) {
                             return (
-                                <div key={i} className="my-8 bg-red-50 border-l-8 border-red-500 p-8 rounded-sm shadow-sm flex gap-6 items-start break-inside-avoid">
-                                    <div className="p-3 bg-red-500 rounded-full shrink-0">
-                                        <ShieldAlert className="w-5 h-5 text-white" />
+                                <div key={i} className="my-8 bg-[#fef2f2] border-l-8 border-[#ef4444] p-8 rounded-sm shadow-sm flex gap-6 items-start break-inside-avoid">
+                                    <div className="p-3 bg-[#ef4444] rounded-full shrink-0">
+                                        <ShieldAlert className="w-5 h-5 text-[#ffffff]" />
                                     </div>
                                     <div>
-                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-red-600 mb-2 block">Critical Safety Rule</span>
-                                        <p className="text-[13px] font-bold text-red-900 leading-relaxed italic">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#dc2626] mb-2 block">Critical Safety Rule</span>
+                                        <p className="text-[13px] font-bold text-[#7f1d1d] leading-relaxed italic">
                                             {trimmed.replace(/\[SAFETY\]|\[\/SAFETY\]/g, '')}
                                         </p>
                                     </div>
@@ -182,12 +182,12 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                         if (isTip) {
                             return (
                                 <div key={i} className="my-8 bg-[#fefaf6] border-2 border-dashed border-[#cec2b5] p-8 rounded-xl shadow-inner flex gap-6 items-start break-inside-avoid">
-                                    <div className="p-3 bg-white rounded-full border border-slate-100 shadow-sm shrink-0">
+                                    <div className="p-3 bg-[#ffffff] rounded-full border border-[#f1f5f9] shadow-sm shrink-0">
                                         <Lightbulb className="w-5 h-5 text-[#cec2b5]" />
                                     </div>
                                     <div>
-                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-2 block">Professional Insight</span>
-                                        <p className="text-[14px] font-serif italic text-slate-700 leading-relaxed">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#64748b] mb-2 block">Professional Insight</span>
+                                        <p className="text-[14px] font-serif italic text-[#334155] leading-relaxed">
                                             {trimmed.replace(/\[TIP\]|\[\/TIP\]/g, '')}
                                         </p>
                                     </div>
@@ -217,9 +217,9 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                                         </thead>
                                         <tbody>
                                             {gridLines.slice(1).map((row, rIdx) => (
-                                                <tr key={rIdx} className="border-b border-[#cec2b5]/50 last:border-0 hover:bg-white/50 transition-colors">
+                                                <tr key={rIdx} className="border-b border-[#cec2b5]/50 last:border-0 hover:bg-[#ffffff]/50 transition-colors">
                                                     {row.split('|').map((cell, cIdx) => (
-                                                        <td key={cIdx} className={`p-4 text-[12px] text-slate-700 ${cIdx === 0 ? 'font-bold w-16' : ''}`}>
+                                                        <td key={cIdx} className={`p-4 text-[12px] text-[#334155] ${cIdx === 0 ? 'font-bold w-16' : ''}`}>
                                                             {cell.trim()}
                                                         </td>
                                                     ))}
@@ -234,7 +234,7 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
 
                         // 6. Standard Body Text
                         return (
-                            <p key={i} className="text-[15px] leading-[1.8] text-slate-800 font-light mb-6 text-justify">
+                            <p key={i} className="text-[15px] leading-[1.8] text-[#1e293b] font-light mb-6 text-justify">
                                 {trimmed}
                             </p>
                         );
@@ -245,7 +245,7 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                 <div className="mt-12 border-t border-[#cec2b5]/30 pt-8 flex justify-between items-center opacity-60">
                     <div className="flex items-center gap-2">
                         <BookOpen className="w-3 h-3 text-[#8B5A2B]" />
-                        <span className="text-[10px] font-medium text-slate-500 italic">Preshy's Candle Making Guide</span>
+                        <span className="text-[10px] font-medium text-[#64748b] italic">Preshy's Candle Making Guide</span>
                     </div>
                     <span className="text-[12px] font-serif italic text-[#8B5A2B]">Elite Publication &copy; 2026</span>
                 </div>
