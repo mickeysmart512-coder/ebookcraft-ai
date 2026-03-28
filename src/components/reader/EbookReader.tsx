@@ -68,64 +68,21 @@ export function EbookReader({
             const opt = {
                 margin: 0,
                 filename: 'Candle-Making-With-Preshy.pdf',
-                image: { type: 'jpeg' as const, quality: 0.98 },
+                image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: {
                     scale: 2,
                     useCORS: true,
-                    foreignObjectRendering: true,
-                    letterRendering: true,
-                    scrollY: 0,
                     windowWidth: document.documentElement.offsetWidth,
                     onclone: (clonedDoc: Document) => {
-                        // Fix for html2canvas not supporting modern color spaces (lab, oklch)
-                        const style = clonedDoc.createElement('style');
-                        style.innerHTML = `
-                            * { 
-                                transition: none !important;
-                                animation: none !important;
-                            }
-                            /* Overlay fix: ensures any background that might use lab() defaults to solid */
-                            .print-container { background-color: white !important; }
-                        `;
-                        clonedDoc.head.appendChild(style);
-
-                        // Also aggressively remove oklch and lab from stylesheets
-                        const styleTags = clonedDoc.querySelectorAll('style');
-                        styleTags.forEach((s) => {
-                            if (s.innerHTML) {
-                                s.innerHTML = s.innerHTML
-                                    .replace(/oklch\([^)]+\)/gi, '#1e293b')
-                                    .replace(/lab\([^)]+\)/gi, '#1e293b');
-                            }
+                        const elements = clonedDoc.querySelectorAll('*');
+                        elements.forEach(el => {
+                            const style = window.getComputedStyle(el);
+                            if (style.backgroundColor.includes('oklch')) (el as HTMLElement).style.backgroundColor = '#ffffff';
+                            if (style.color.includes('oklch')) (el as HTMLElement).style.color = '#000000';
                         });
-
-                        // Scrub elements that might have problematic computed styles
-                        const elements = clonedDoc.getElementsByTagName('*');
-                        for (let i = 0; i < elements.length; i++) {
-                            const el = elements[i] as HTMLElement;
-                            // Critical: Check computed styles as Tailwind 4 uses lab/oklch for utilities
-                            const comp = window.getComputedStyle(el);
-
-                            if (comp.color.includes('lab') || comp.color.includes('oklch')) {
-                                el.style.setProperty('color', '#1e293b', 'important');
-                            }
-                            if (comp.backgroundColor.includes('lab') || comp.backgroundColor.includes('oklch')) {
-                                if (comp.backgroundColor !== 'rgba(0, 0, 0, 0)') {
-                                    el.style.setProperty('background-color', '#ffffff', 'important');
-                                }
-                            }
-                            if (comp.borderColor.includes('lab') || comp.borderColor.includes('oklch')) {
-                                el.style.setProperty('border-color', '#e2e8f0', 'important');
-                            }
-                        }
                     }
                 },
-                jsPDF: {
-                    unit: 'mm' as const,
-                    format: 'a4' as const,
-                    orientation: 'portrait' as const
-                },
-                pagebreak: { mode: ['css' as const, 'legacy' as const] }
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
             };
 
             await html2pdf().from(printRef.current).set(opt).save();
@@ -263,11 +220,8 @@ export function EbookReader({
                 {/* Hidden Print Container */}
                 <div
                     ref={printRef}
-                    className="absolute top-0 left-0 z-0 opacity-100 bg-white w-full print-container"
-                    style={{
-                        width: '210mm',
-                        pointerEvents: 'none'
-                    }}
+                    className="fixed top-0 left-0 z-[-1] opacity-100 bg-white w-full print-container"
+                    style={{ width: '210mm', pointerEvents: 'none' }}
                 >
                     {pages.map((page, i) => (
                         <div key={i} className="A4-page break-after-page">
