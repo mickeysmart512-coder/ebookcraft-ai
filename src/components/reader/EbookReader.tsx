@@ -84,10 +84,24 @@ export function EbookReader({
                         });
 
                         const elements = clonedDoc.querySelectorAll('*');
+                        const unsupportedColors = ['oklch', 'lab', 'lch', 'color-mix'];
+
+                        const hasUnsupportedColor = (colorStr: string) => {
+                            return unsupportedColors.some(format => colorStr.includes(format));
+                        };
+
                         elements.forEach(el => {
                             const style = window.getComputedStyle(el);
-                            if (style.backgroundColor.includes('oklch') || style.backgroundColor.includes('lab')) (el as HTMLElement).style.backgroundColor = '#ffffff';
-                            if (style.color.includes('oklch') || style.color.includes('lab')) (el as HTMLElement).style.color = '#000000';
+
+                            if (hasUnsupportedColor(style.backgroundColor)) {
+                                (el as HTMLElement).style.backgroundColor = '#ffffff'; // Fallback to white
+                            }
+                            if (hasUnsupportedColor(style.color)) {
+                                (el as HTMLElement).style.color = '#000000'; // Fallback to black
+                            }
+                            if (hasUnsupportedColor(style.borderColor)) {
+                                (el as HTMLElement).style.borderColor = '#e5e7eb'; // Fallback to light gray
+                            }
                         });
                     }
                 },
