@@ -74,11 +74,20 @@ export function EbookReader({
                     useCORS: true,
                     windowWidth: document.documentElement.offsetWidth,
                     onclone: (clonedDoc: Document) => {
+                        const styleTags = clonedDoc.querySelectorAll('style');
+                        styleTags.forEach((s) => {
+                            if (s.innerHTML) {
+                                s.innerHTML = s.innerHTML
+                                    .replace(/oklch\([^)]+\)/gi, '#1e293b')
+                                    .replace(/lab\([^)]+\)/gi, '#1e293b');
+                            }
+                        });
+
                         const elements = clonedDoc.querySelectorAll('*');
                         elements.forEach(el => {
                             const style = window.getComputedStyle(el);
-                            if (style.backgroundColor.includes('oklch')) (el as HTMLElement).style.backgroundColor = '#ffffff';
-                            if (style.color.includes('oklch')) (el as HTMLElement).style.color = '#000000';
+                            if (style.backgroundColor.includes('oklch') || style.backgroundColor.includes('lab')) (el as HTMLElement).style.backgroundColor = '#ffffff';
+                            if (style.color.includes('oklch') || style.color.includes('lab')) (el as HTMLElement).style.color = '#000000';
                         });
                     }
                 },
