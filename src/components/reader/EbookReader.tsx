@@ -47,6 +47,16 @@ export function EbookReader({
 
     const handleDownloadPDF = async () => {
         if (!printRef.current) return;
+
+        // 1. Debugging Mandate: Pre-Export CSS Reset
+        const originalStyle = printRef.current.getAttribute('style') || '';
+        const originalScrollY = window.scrollY;
+
+        // Ensure container is height:auto and overflow:visible for capture
+        printRef.current.style.height = 'auto';
+        printRef.current.style.overflow = 'visible';
+        window.scrollTo(0, 0);
+
         setIsExporting(true);
 
         try {
@@ -55,14 +65,14 @@ export function EbookReader({
 
             const opt = {
                 margin: 0,
-                filename: `${title.toLowerCase().replace(/\s+/g, '-')}.pdf`,
+                filename: 'Candle-Making-With-Preshy.pdf',
                 image: { type: 'jpeg' as const, quality: 0.98 },
                 html2canvas: {
                     scale: 2,
                     useCORS: true,
                     letterRendering: true,
                     scrollY: 0,
-                    scrollX: 0,
+                    windowWidth: document.documentElement.offsetWidth,
                     onclone: (clonedDoc: Document) => {
                         // Fix for html2canvas not supporting modern color spaces (lab, oklch)
                         const style = clonedDoc.createElement('style');
@@ -102,20 +112,20 @@ export function EbookReader({
                     format: 'a4' as const,
                     orientation: 'portrait' as const
                 },
-                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                pagebreak: { mode: ['css' as const, 'legacy' as const] }
             };
 
             await html2pdf().from(printRef.current).set(opt).save();
             console.log('PDF Successfully Generated');
         } catch (error: any) {
             console.error('PDF Generation Error:', error);
-            // More specific error alerts for the user
-            if (error.message?.includes('Canvas')) {
-                alert('Rendering error: The e-book might be too large for your browser to process. Try downloading in chunks.');
-            } else {
-                alert(`Failed to generate PDF: ${error.message || 'Unknown error'}. Please check your console for details.`);
-            }
+            alert(`Failed to generate PDF: ${error.message || 'Unknown error'}. Please check your console for details.`);
         } finally {
+            // Restore Original CSS and State
+            if (printRef.current) {
+                printRef.current.setAttribute('style', originalStyle);
+            }
+            window.scrollTo(0, originalScrollY);
             setIsExporting(false);
         }
     };
