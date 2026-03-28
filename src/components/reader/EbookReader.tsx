@@ -47,17 +47,17 @@ export function EbookReader({
     const pages = useMemo(() => {
         // 1. Initial Split by headers
         const chapterChunks = isMaster
-            ? content.split(/(?=~[^~]+~)/g)
+            ? content.split(/(?=~[^~]+~|\[TOC\])/g)
             : content.split('\n\n').filter(p => p.trim().length > 0);
 
-        const processedPages: string[] = [];
+        const processedPages: { content: string; isTOC: boolean }[] = [];
 
         chapterChunks.forEach(chunk => {
             const trimmed = chunk.trim();
             if (trimmed.length === 0) return;
 
             // Special Case: Table of Contents (High Limit)
-            const isTOC = trimmed.toLowerCase().includes("table of contents");
+            const isTOC = trimmed.toLowerCase().includes("table of contents") || trimmed.toLowerCase().includes("[toc]");
             const MAX_CHARS = isTOC ? 8000 : 1150;
 
             if (trimmed.length > MAX_CHARS && isMaster) {
@@ -69,36 +69,36 @@ export function EbookReader({
                     if (l.length === 0) return;
 
                     if ((currentSubPage.length + l.length) > MAX_CHARS && currentSubPage.length > 0) {
-                        processedPages.push(currentSubPage.trim());
+                        processedPages.push({ content: currentSubPage.trim(), isTOC });
                         currentSubPage = l + "\n\n";
                     } else {
                         currentSubPage += l + "\n\n";
                     }
                 });
-                if (currentSubPage) processedPages.push(currentSubPage.trim());
+                if (currentSubPage) processedPages.push({ content: currentSubPage.trim(), isTOC });
             } else {
-                processedPages.push(trimmed);
+                processedPages.push({ content: trimmed, isTOC });
             }
         });
 
         if (isMaster) {
-            processedPages.unshift("COVER_PAGE_MARKER");
+            processedPages.unshift({ content: "COVER_PAGE_MARKER", isTOC: false });
             // Ensure TOC is always right after cover if found
-            const tocIndex = processedPages.findIndex(p => p.toLowerCase().includes("table of contents"));
+            const tocIndex = processedPages.findIndex(p => p.content.toLowerCase().includes("table of contents") || p.isTOC);
             if (tocIndex > 1) {
                 const [toc] = processedPages.splice(tocIndex, 1);
                 processedPages.splice(1, 0, toc);
             }
         }
 
-        return processedPages.filter(p => p.length > 2);
+        return processedPages.filter(p => p.content.length > 2);
     }, [content, isMaster]);
 
     const [currentPage, setCurrentPage] = useState(0);
 
-    const renderLayout = (pageContent: string, index: number) => {
+    const renderLayout = (page: { content: string; isTOC: boolean }, index: number) => {
         const props = {
-            content: pageContent,
+            content: page.content,
             title,
             subtitle: isMaster ? "From First Pour to First Sale" : "",
             author: isMaster ? "Ibenu Precious" : "",
@@ -106,7 +106,8 @@ export function EbookReader({
             fontSize,
             isDarkMode,
             currentPage: index,
-            totalPages: pages.length
+            totalPages: pages.length,
+            isTOC: page.isTOC
         };
 
         switch (template.layoutId) {
@@ -126,7 +127,7 @@ export function EbookReader({
                         {index === 0 && (
                             <h1 className="text-6xl font-black mb-20 text-center" style={{ fontFamily: template.styles.headingFont }}>{title}</h1>
                         )}
-                        <ContentRenderer content={pageContent} accentColor={template.styles.accent} templateCategory={template.category} />
+                        <ContentRenderer content={page.content} accentColor={template.styles.accent} templateCategory={template.category} />
                     </div>
                 );
         }

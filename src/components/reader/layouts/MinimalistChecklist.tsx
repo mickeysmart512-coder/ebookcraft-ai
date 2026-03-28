@@ -10,11 +10,14 @@ interface MinimalistLayoutProps {
     subtitle?: string;
     author?: string;
     content: string;
+    isTOC?: boolean;
 }
 
-export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, subtitle, author, content }) => {
+export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, subtitle, author, content, isTOC }) => {
     const lines = content.split('\n');
-    const isTOC = content.toLowerCase().includes('archive index') || content.toLowerCase().includes('table of contents');
+    const isTOCFromProp = isTOC === true;
+    const isTOCFromContent = content.toLowerCase().includes('archive index') || content.toLowerCase().includes('table of contents') || content.toLowerCase().includes('[toc]');
+    const activeIsTOC = isTOCFromProp || isTOCFromContent;
 
     return (
         <div className={`min-h-[297mm] w-[210mm] bg-[#f6f3ec] p-[20mm] mx-auto shadow-2xl relative overflow-hidden print:shadow-none print:m-0 print:w-full ${poppins.className}`}>
@@ -38,8 +41,8 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                     {/* Content Logic */}
                     {lines.map((line, i) => {
                         const trimmed = line.trim();
-                        if (!trimmed && !isTOC) return <div key={i} className="h-4" />;
-                        if (!trimmed && isTOC) return null;
+                        if (!trimmed && !activeIsTOC) return <div key={i} className="h-4" />;
+                        if (!trimmed && activeIsTOC) return null;
 
                         // Flags
                         const isPartHeader = trimmed.startsWith('PART');
@@ -52,14 +55,16 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                         const isSafety = trimmed.startsWith('[SAFETY]');
                         const isTip = trimmed.startsWith('[TIP]');
                         const isTildeHeader = trimmed.startsWith('~') && trimmed.endsWith('~');
+                        const isTOCMarker = trimmed.startsWith('[TOC]') || trimmed.startsWith('[/TOC]');
 
                         // 1. Table of Contents Handling
-                        if (isTOC) {
+                        if (activeIsTOC) {
+                            if (isTOCMarker) return null;
                             if (isPartHeader || isIntroHeader) {
                                 return (
                                     <div key={i} className="mb-6 mt-8 break-inside-avoid">
                                         <div className="text-[14px] font-bold text-[#8B5A2B] border-b-2 border-[#cec2b5] pb-2 mb-4 uppercase tracking-[0.2em] font-serif">
-                                            {trimmed.replace(/~/g, '')}
+                                            {trimmed.replace(/[~\[\]]/g, '').replace(/TOC/g, '')}
                                         </div>
                                     </div>
                                 );
@@ -96,6 +101,15 @@ export const MinimalistChecklist: React.FC<MinimalistLayoutProps> = ({ title, su
                                         </h1>
                                         <div className="w-full h-[2px] bg-slate-900/10 mb-2" />
                                         <div className="w-1/3 h-[1px] bg-[#cec2b5] mb-6" />
+                                    </div>
+                                );
+                            }
+                            // Fallback for everything else in TOC
+                            if (trimmed && !isTOCMarker && !isPartHeader && !isIntroHeader && !isChapterNum && !isSubBullet && !isNestedBullet) {
+                                return (
+                                    <div key={i} className="mb-1.5 break-inside-avoid text-[10px] text-slate-600 font-medium pl-4 flex items-start gap-2">
+                                        <span className="text-[#cec2b5] mt-0.5">●</span>
+                                        <span>{trimmed.replace(/[~●]/g, '').trim()}</span>
                                     </div>
                                 );
                             }

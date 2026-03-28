@@ -1,4 +1,4 @@
-export const CANDLE_MAKING_CONTENT = `~ ARCHIVE INDEX ~
+export const CANDLE_MAKING_CONTENT = `[TOC]~ ARCHIVE INDEX ~
 
 Introduction
 ● Welcome to Candle Making with Preshy
@@ -462,5 +462,5 @@ Pricing Strategy: Offer bundle discounts or first-time buyer incentives to encou
 6. Inconsistent Marketing: Post regularly. Consistency builds brand awareness and sales.
 7. Over-Expansion: Start with 3–5 signature scents. Focus on quality before quantity.
 
-Congratulations! You have completed the journey from first pour to first sale. Your path as a Candle Boss begins now.
+Congratulations! You have completed the journey from first pour to first sale. Your path as a Candle Boss begins now.[/TOC]
 `;
