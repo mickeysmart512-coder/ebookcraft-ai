@@ -204,10 +204,14 @@ export default function DashboardPage() {
                                                 className={`h-8 w-8 ${!ebook.isMaster && 'opacity-0 group-hover:opacity-100'} transition-opacity`}
                                                 onClick={async () => {
                                                     if (ebook.isMaster) {
-                                                        const { CANDLE_MAKING_CONTENT } = await import("@/lib/manual-induction-data");
+                                                        const response = await fetch('/Candle making with Preshy.docx');
+                                                        const arrayBuffer = await response.arrayBuffer();
+                                                        const mammoth = (await import('mammoth')).default;
+                                                        const { value: rawHtml } = await mammoth.convertToHtml({ arrayBuffer });
+
                                                         setSelectedEbook({
                                                             title: ebook.title,
-                                                            content: CANDLE_MAKING_CONTENT,
+                                                            content: rawHtml,
                                                             templateId: 'minimal-beige-checklist',
                                                             isDownloading: true
                                                         });
@@ -230,10 +234,14 @@ export default function DashboardPage() {
                                                 className={`h-8 w-8 ${!ebook.isMaster && 'opacity-0 group-hover:opacity-100'} transition-opacity`}
                                                 onClick={async () => {
                                                     if (ebook.isMaster) {
-                                                        const { CANDLE_MAKING_CONTENT } = await import("@/lib/manual-induction-data");
+                                                        const response = await fetch('/Candle making with Preshy.docx');
+                                                        const arrayBuffer = await response.arrayBuffer();
+                                                        const mammoth = (await import('mammoth')).default;
+                                                        const { value: rawHtml } = await mammoth.convertToHtml({ arrayBuffer });
+
                                                         setSelectedEbook({
                                                             title: ebook.title,
-                                                            content: CANDLE_MAKING_CONTENT,
+                                                            content: rawHtml,
                                                             templateId: 'minimal-beige-checklist'
                                                         });
                                                     } else {

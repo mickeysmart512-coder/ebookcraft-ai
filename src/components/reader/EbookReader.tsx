@@ -138,43 +138,91 @@ export function EbookReader({
         const processedPages: { content: string; isTOC: boolean }[] = [];
 
         if (isMaster) {
-            // Master relies on specific text demarcations
-            const chapterChunks = content.split(/(?=~[^~]+~|\[TOC\])/g);
-            chapterChunks.forEach(chunk => {
-                const trimmed = chunk.trim();
-                if (trimmed.length === 0) return;
+            // God-Mode DOM Cleanup Pipeline
+            if (typeof window === 'undefined') {
+                return [{ content: "<p>Loading master document...</p>", isTOC: false }];
+            }
 
-                const isTOC = trimmed.toLowerCase().includes("table of contents") || trimmed.toLowerCase().includes("[toc]");
-                const MAX_CHARS = isTOC ? 8000 : 1150;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(content, 'text/html');
+            const nodes = Array.from(doc.body.children);
 
-                if (trimmed.length > MAX_CHARS) {
-                    const lines = trimmed.split('\n');
-                    let currentSubPage = "";
+            let inList = false;
+            let currentUl: HTMLUListElement | null = null;
+            const cleanedNodes: Element[] = [];
 
-                    lines.forEach(line => {
-                        const l = line.trim();
-                        if (l.length === 0) return;
+            nodes.forEach((node) => {
+                if (node.tagName === 'P') {
+                    const text = node.textContent?.trim() || "";
 
-                        if ((currentSubPage.length + l.length) > MAX_CHARS && currentSubPage.length > 0) {
-                            processedPages.push({ content: currentSubPage.trim(), isTOC });
-                            currentSubPage = l + "\n\n";
-                        } else {
-                            currentSubPage += l + "\n\n";
+                    // 1. Delete stray numbers
+                    if (/^\d+$/.test(text)) {
+                        return; // Omit
+                    }
+
+                    // 2. Create real headings
+                    const isAllCaps = text === text.toUpperCase() && text.match(/[A-Z]/);
+                    const isChapterOrPart = text.startsWith('Chapter') || text.startsWith('PART');
+
+                    if (text.length > 0 && text.length < 60 && (isAllCaps || isChapterOrPart)) {
+                        const h2 = doc.createElement('h2');
+                        h2.textContent = text;
+                        cleanedNodes.push(h2);
+                        inList = false;
+                        return;
+                    }
+
+                    // 3. Create real lists
+                    const listMatch = text.match(/^[●○~]\s*(.*)$/);
+                    if (listMatch) {
+                        if (!inList) {
+                            currentUl = doc.createElement('ul');
+                            cleanedNodes.push(currentUl);
+                            inList = true;
                         }
-                    });
-                    if (currentSubPage) processedPages.push({ content: currentSubPage.trim(), isTOC });
+                        const li = doc.createElement('li');
+                        li.textContent = listMatch[1];
+                        currentUl!.appendChild(li);
+                        return;
+                    } else {
+                        inList = false;
+                    }
                 } else {
-                    processedPages.push({ content: trimmed, isTOC });
+                    inList = false;
+                }
+
+                cleanedNodes.push(node);
+            });
+
+            // Smart Pagination Step
+            let currentPageContent = "";
+            const MAX_CHARS = 1500;
+
+            cleanedNodes.forEach(node => {
+                const isHeading = node.tagName.match(/^H[1-2]$/i);
+
+                if (node.tagName.match(/^(P|UL|OL|LI|TABLE|BLOCKQUOTE)$/i)) {
+                    node.classList.add('break-inside-avoid');
+                }
+
+                const nodeHTML = node.outerHTML;
+
+                if (isHeading && currentPageContent.trim().length > 0) {
+                    processedPages.push({ content: currentPageContent.trim(), isTOC: false });
+                    currentPageContent = nodeHTML + "\n";
+                } else if ((currentPageContent.length + nodeHTML.length) > MAX_CHARS && currentPageContent.length > 0) {
+                    processedPages.push({ content: currentPageContent.trim(), isTOC: false });
+                    currentPageContent = nodeHTML + "\n";
+                } else {
+                    currentPageContent += nodeHTML + "\n";
                 }
             });
 
-            processedPages.unshift({ content: "COVER_PAGE_MARKER", isTOC: false });
-            // Ensure TOC is always right after cover if found
-            const tocIndex = processedPages.findIndex(p => p.content.toLowerCase().includes("table of contents") || p.isTOC);
-            if (tocIndex > 1) {
-                const [toc] = processedPages.splice(tocIndex, 1);
-                processedPages.splice(1, 0, toc);
+            if (currentPageContent.trim().length > 0) {
+                processedPages.push({ content: currentPageContent.trim(), isTOC: false });
             }
+
+            processedPages.unshift({ content: "COVER_PAGE_MARKER", isTOC: false });
         } else {
             // DOM-Aware HTML Chunking
             if (typeof window === 'undefined') {
