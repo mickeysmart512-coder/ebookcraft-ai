@@ -52,7 +52,7 @@ export default function DashboardPage() {
 
     const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        if (file && file.type === 'application/pdf') {
+        if (file && (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file.name.endsWith('.docx'))) {
             startCrafting(file);
         }
     };
@@ -148,7 +148,7 @@ export default function DashboardPage() {
                         type="file"
                         id="file-upload"
                         className="hidden"
-                        accept=".pdf"
+                        accept=".docx"
                         onChange={handleFileSelect}
                     />
                     <Button
@@ -264,7 +264,7 @@ export default function DashboardPage() {
                     >
                         <CardHeader>
                             <CardTitle className="text-lg">Quick Upload</CardTitle>
-                            <CardDescription>Click to select or drag and drop your PDF (Max 50MB)</CardDescription>
+                            <CardDescription>Click to select or drag and drop your DOCX (Max 50MB)</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="border-2 border-dashed border-primary/20 rounded-xl p-8 flex flex-col items-center justify-center gap-4 transition-colors group-hover:border-primary/50 group-hover:bg-primary/5">

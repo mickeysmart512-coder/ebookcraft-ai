@@ -135,49 +135,70 @@ export function EbookReader({
 
     // Strict A4 Pagination Engine
     const pages = useMemo(() => {
-        // 1. Initial Split by headers
-        const chapterChunks = isMaster
-            ? content.split(/(?=~[^~]+~|\[TOC\])/g)
-            : content.split('\n\n').filter(p => p.trim().length > 0);
-
         const processedPages: { content: string; isTOC: boolean }[] = [];
 
-        chapterChunks.forEach(chunk => {
-            const trimmed = chunk.trim();
-            if (trimmed.length === 0) return;
-
-            // Special Case: Table of Contents (High Limit)
-            const isTOC = trimmed.toLowerCase().includes("table of contents") || trimmed.toLowerCase().includes("[toc]");
-            const MAX_CHARS = isTOC ? 8000 : 1150;
-
-            if (trimmed.length > MAX_CHARS && isMaster) {
-                const lines = trimmed.split('\n');
-                let currentSubPage = "";
-
-                lines.forEach(line => {
-                    const l = line.trim();
-                    if (l.length === 0) return;
-
-                    if ((currentSubPage.length + l.length) > MAX_CHARS && currentSubPage.length > 0) {
-                        processedPages.push({ content: currentSubPage.trim(), isTOC });
-                        currentSubPage = l + "\n\n";
-                    } else {
-                        currentSubPage += l + "\n\n";
-                    }
-                });
-                if (currentSubPage) processedPages.push({ content: currentSubPage.trim(), isTOC });
-            } else {
-                processedPages.push({ content: trimmed, isTOC });
-            }
-        });
-
         if (isMaster) {
+            // Master relies on specific text demarcations
+            const chapterChunks = content.split(/(?=~[^~]+~|\[TOC\])/g);
+            chapterChunks.forEach(chunk => {
+                const trimmed = chunk.trim();
+                if (trimmed.length === 0) return;
+
+                const isTOC = trimmed.toLowerCase().includes("table of contents") || trimmed.toLowerCase().includes("[toc]");
+                const MAX_CHARS = isTOC ? 8000 : 1150;
+
+                if (trimmed.length > MAX_CHARS) {
+                    const lines = trimmed.split('\n');
+                    let currentSubPage = "";
+
+                    lines.forEach(line => {
+                        const l = line.trim();
+                        if (l.length === 0) return;
+
+                        if ((currentSubPage.length + l.length) > MAX_CHARS && currentSubPage.length > 0) {
+                            processedPages.push({ content: currentSubPage.trim(), isTOC });
+                            currentSubPage = l + "\n\n";
+                        } else {
+                            currentSubPage += l + "\n\n";
+                        }
+                    });
+                    if (currentSubPage) processedPages.push({ content: currentSubPage.trim(), isTOC });
+                } else {
+                    processedPages.push({ content: trimmed, isTOC });
+                }
+            });
+
             processedPages.unshift({ content: "COVER_PAGE_MARKER", isTOC: false });
             // Ensure TOC is always right after cover if found
             const tocIndex = processedPages.findIndex(p => p.content.toLowerCase().includes("table of contents") || p.isTOC);
             if (tocIndex > 1) {
                 const [toc] = processedPages.splice(tocIndex, 1);
                 processedPages.splice(1, 0, toc);
+            }
+        } else {
+            // For general user uploads, we receive HTML from mammoth.
+            // Split into top-level HTML blocks to preserve structure while chunking.
+            // Fallback to \n\n if no HTML blocks are found.
+            const blocks = content.match(/<(p|h[1-6]|ul|ol|table|blockquote)[^>]*>[\s\S]*?<\/\1>/g) || content.split('\n\n');
+            const chapterChunks = blocks.filter(p => p.trim().length > 0);
+
+            let currentPageContent = "";
+            const MAX_CHARS = 1150; // Approximated characters per A4 page
+
+            chapterChunks.forEach(chunk => {
+                const trimmed = chunk.trim();
+                if (trimmed.length === 0) return;
+
+                if ((currentPageContent.length + trimmed.length) > MAX_CHARS && currentPageContent.length > 0) {
+                    processedPages.push({ content: currentPageContent.trim(), isTOC: false });
+                    currentPageContent = trimmed + "\n";
+                } else {
+                    currentPageContent += trimmed + "\n";
+                }
+            });
+
+            if (currentPageContent) {
+                processedPages.push({ content: currentPageContent.trim(), isTOC: false });
             }
         }
 
