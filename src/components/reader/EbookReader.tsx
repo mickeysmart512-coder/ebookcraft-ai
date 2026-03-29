@@ -176,28 +176,43 @@ export function EbookReader({
                 processedPages.splice(1, 0, toc);
             }
         } else {
-            // For general user uploads, we receive HTML from mammoth.
-            // Split into top-level HTML blocks to preserve structure while chunking.
-            // Fallback to \n\n if no HTML blocks are found.
-            const blocks = content.match(/<(p|h[1-6]|ul|ol|table|blockquote)[^>]*>[\s\S]*?<\/\1>/g) || content.split('\n\n');
-            const chapterChunks = blocks.filter(p => p.trim().length > 0);
+            // DOM-Aware HTML Chunking
+            if (typeof window === 'undefined') {
+                return [{ content: "<p>Loading document...</p>", isTOC: false }];
+            }
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(content, 'text/html');
+            const nodes = Array.from(doc.body.children);
 
             let currentPageContent = "";
             const MAX_CHARS = 1150; // Approximated characters per A4 page
 
-            chapterChunks.forEach(chunk => {
-                const trimmed = chunk.trim();
-                if (trimmed.length === 0) return;
+            nodes.forEach(node => {
+                // Determine if node is a Chapter boundary
+                const isHeading = node.tagName.match(/^H[1-2]$/i);
 
-                if ((currentPageContent.length + trimmed.length) > MAX_CHARS && currentPageContent.length > 0) {
+                // Add print-safe classes to avoid cutting blocks in half
+                if (node.tagName.match(/^(P|UL|OL|LI|TABLE|BLOCKQUOTE)$/i)) {
+                    node.classList.add('break-inside-avoid');
+                }
+
+                const nodeHTML = node.outerHTML;
+
+                if (isHeading && currentPageContent.trim().length > 0) {
+                    // Force start a new page on H1/H2
                     processedPages.push({ content: currentPageContent.trim(), isTOC: false });
-                    currentPageContent = trimmed + "\n";
+                    currentPageContent = nodeHTML + "\n";
+                } else if ((currentPageContent.length + nodeHTML.length) > MAX_CHARS && currentPageContent.length > 0) {
+                    // Max characters reached, break page
+                    processedPages.push({ content: currentPageContent.trim(), isTOC: false });
+                    currentPageContent = nodeHTML + "\n";
                 } else {
-                    currentPageContent += trimmed + "\n";
+                    currentPageContent += nodeHTML + "\n";
                 }
             });
 
-            if (currentPageContent) {
+            if (currentPageContent.trim().length > 0) {
                 processedPages.push({ content: currentPageContent.trim(), isTOC: false });
             }
         }
@@ -278,7 +293,7 @@ export function EbookReader({
                     style={{ width: '210mm' }}
                 >
                     {pages.map((page, i) => (
-                        <div key={i} className="A4-page break-after-page">
+                        <div key={i} className="A4-page break-after-page prose prose-slate max-w-none">
                             {renderLayout(page, i)}
                         </div>
                     ))}
@@ -389,7 +404,7 @@ export function EbookReader({
                 }}
             >
                 {pages.map((page, i) => (
-                    <div key={i} className="A4-page break-after-page">
+                    <div key={i} className="A4-page break-after-page prose prose-slate max-w-none">
                         {renderLayout(page, i)}
                     </div>
                 ))}
